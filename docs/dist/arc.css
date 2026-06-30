@@ -211,7 +211,7 @@ a {
   --btn-gradient-pos-end: 0% 0%;
 
   /* Hero media — theme overrideable */
-  --hero-photo: url("https://picsum.photos/seed/arc-default-landscape/2400/1400");
+  --hero-photo: url("https://picsum.photos/id/20/2400/1400");
   --hero-photo-position: center 34%;
 }
 

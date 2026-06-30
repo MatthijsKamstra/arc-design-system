@@ -214,7 +214,7 @@ a {
   --btn-gradient-pos-end: 0% 0%;
 
   /* Hero media — theme overrideable */
-  --hero-photo: url("https://picsum.photos/seed/arc-default-landscape/2400/1400");
+  --hero-photo: url("https://picsum.photos/id/20/2400/1400");
   --hero-photo-position: center 34%;
 }
 
@@ -2365,46 +2365,49 @@ hr {
 
 @layer arc.theme {
   :root {
-   --xy-deep: oklch(30% 0.05 190);
-   --xy-teal: oklch(31% 0.05 190);
-   --xy-teal-2: oklch(46% 0.08 191);
-   --xy-cyan: oklch(65% 0.11 221);
-   --xy-orange: oklch(74% 0.17 55);
-   --xy-cream: oklch(98% 0.003 95);
-   --xy-paper: oklch(95% 0.004 95);
-   --xy-slate: oklch(52% 0.02 230);
+    --xy-deep: oklch(30% 0.05 190);
+    --xy-teal: oklch(31% 0.05 190);
+    --xy-teal-2: oklch(46% 0.08 191);
+    --xy-cyan: oklch(65% 0.11 221);
+    --xy-orange: oklch(74% 0.17 55);
+    --xy-dark: oklch(31% 0.05 190);
+    --xy-dark-2: oklch(26% 0.04 190);
+    --xy-dark-3: oklch(21% 0.03 190);
+    --xy-cream: oklch(98% 0.003 95);
+    --xy-paper: oklch(95% 0.004 95);
+    --xy-slate: oklch(52% 0.02 230);
 
-   --primary: var(--xy-orange);
-   --secondary: var(--xy-teal);
-   --accent: var(--xy-cyan);
-   --success: var(--xy-teal-2);
-   --warning: oklch(82% 0.13 85);
-   --danger: oklch(63% 0.16 32);
+    --primary: var(--xy-orange);
+    --secondary: var(--xy-teal);
+    --accent: var(--xy-cyan);
+    --success: var(--xy-teal-2);
+    --warning: oklch(82% 0.13 85);
+    --danger: oklch(63% 0.16 32);
 
-   /* Site default is light with dark teal sections */
-   --bg: oklch(99% 0.002 95);
-   --bg-raised: var(--xy-cream);
-   --bg-overlay: var(--xy-paper);
-   --border: oklch(87% 0.01 215);
+    /* Site default is light with dark teal sections */
+    --bg: oklch(99% 0.002 95);
+    --bg-raised: var(--xy-cream);
+    --bg-overlay: var(--xy-paper);
+    --border: oklch(87% 0.01 215);
 
-   --text: oklch(22% 0.024 205);
-   --text-muted: oklch(41% 0.02 215);
-   --text-faint: oklch(58% 0.015 220);
+    --text: oklch(22% 0.024 205);
+    --text-muted: oklch(41% 0.02 215);
+    --text-faint: oklch(58% 0.015 220);
 
-   --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
-   --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+    --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+    --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
 
-   --hero-photo: url("https://picsum.photos/seed/arc-xyntrel-office-people/2400/1400");
-   --hero-photo-position: center 38%;
+    --hero-photo: url("https://picsum.photos/seed/arc-xyntrel-office-people/2400/1400");
+    --hero-photo-position: center 38%;
 
-   --btn-primary-text: oklch(99% 0.002 95);
+    --btn-primary-text: oklch(99% 0.002 95);
 
-   --r-sm: 0.4rem;
-   --r: 0.65rem;
-   --r-md: 0.8rem;
-   --r-lg: 1rem;
-   --r-xl: 1.2rem;
-   --r-2xl: 1.5rem;
+    --r-sm: 0.4rem;
+    --r: 0.65rem;
+    --r-md: 0.8rem;
+    --r-lg: 1rem;
+    --r-xl: 1.2rem;
+    --r-2xl: 1.5rem;
 
     --glow-sm: none;
     --glow: none;
@@ -2416,29 +2419,33 @@ hr {
   }
 
   [data-theme="dark"] {
-    --bg: oklch(13% 0.02 196);
-    --bg-raised: oklch(18% 0.022 196);
-    --bg-overlay: oklch(23% 0.024 196);
-    --border: oklch(34% 0.03 196);
-    --text: oklch(96% 0.004 95);
-    --text-muted: oklch(78% 0.012 196);
-    --text-faint: oklch(61% 0.014 196);
-    --btn-primary-text: oklch(18% 0.022 196);
-    --shadow-sm: 0 1px 3px oklch(0% 0 0 / 0.35);
-    --shadow: 0 10px 24px oklch(0% 0 0 / 0.26);
-    --shadow-lg: 0 18px 40px oklch(0% 0 0 / 0.32);
+    --secondary: var(--xy-dark);
+    --accent: oklch(76% 0.16 54);
+    --bg: var(--xy-dark);
+    --bg-raised: oklch(100% 0 0 / 0.055);
+    --bg-overlay: oklch(100% 0 0 / 0.09);
+    --border: oklch(100% 0 0 / 0.15);
+    --text: oklch(98% 0.004 95);
+    --text-muted: oklch(98% 0.004 95 / 0.72);
+    --text-faint: oklch(98% 0.004 95 / 0.52);
+    --btn-primary-text: oklch(99% 0.004 95);
+    --shadow-sm: 0 2px 12px oklch(0% 0 0 / 0.26);
+    --shadow: 0 10px 24px oklch(0% 0 0 / 0.35);
+    --shadow-lg: 0 18px 42px oklch(0% 0 0 / 0.42);
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: oklch(13% 0.02 196);
-      --bg-raised: oklch(18% 0.022 196);
-      --bg-overlay: oklch(23% 0.024 196);
-      --border: oklch(34% 0.03 196);
-      --text: oklch(96% 0.004 95);
-      --text-muted: oklch(78% 0.012 196);
-      --text-faint: oklch(61% 0.014 196);
-      --btn-primary-text: oklch(18% 0.022 196);
+      --secondary: var(--xy-dark);
+      --accent: oklch(76% 0.16 54);
+      --bg: var(--xy-dark);
+      --bg-raised: oklch(100% 0 0 / 0.055);
+      --bg-overlay: oklch(100% 0 0 / 0.09);
+      --border: oklch(100% 0 0 / 0.15);
+      --text: oklch(98% 0.004 95);
+      --text-muted: oklch(98% 0.004 95 / 0.72);
+      --text-faint: oklch(98% 0.004 95 / 0.52);
+      --btn-primary-text: oklch(99% 0.004 95);
     }
   }
 
@@ -2450,8 +2457,9 @@ hr {
     box-shadow: none;
 
     &:hover {
-      background: color-mix(in oklch, var(--primary) 88%, white);
+      background: color-mix(in oklch, var(--primary) 92%, black);
       box-shadow: var(--shadow-sm);
+      transform: translateY(-2px);
     }
   }
 
@@ -2459,10 +2467,12 @@ hr {
     background: var(--secondary);
     color: oklch(98% 0.002 95);
     border-radius: var(--r-full);
+    border: 2px solid color-mix(in oklch, white 28%, transparent);
 
     &:hover {
-      background: color-mix(in oklch, var(--secondary) 92%, white);
+      background: color-mix(in oklch, var(--secondary) 88%, black);
       box-shadow: var(--shadow-sm);
+      transform: translateY(-2px);
     }
   }
 
@@ -2471,9 +2481,38 @@ hr {
     border-color: color-mix(in oklch, var(--secondary) 28%, var(--border));
 
     &:hover {
-      background: color-mix(in oklch, var(--secondary) 8%, white);
+      background: color-mix(in oklch, var(--secondary) 14%, transparent);
       border-color: var(--secondary);
     }
+  }
+
+  [data-theme="dark"] .btn-primary {
+    border: 2px solid var(--primary);
+    box-shadow: none;
+
+    &:hover {
+      border-color: oklch(98% 0.004 95);
+      background: transparent;
+      color: oklch(99% 0.004 95);
+      box-shadow: 0 8px 24px oklch(74% 0.17 55 / 0.28);
+    }
+  }
+
+  [data-theme="dark"] .btn-ghost {
+    color: oklch(98% 0.004 95 / 0.86);
+    border-color: oklch(98% 0.004 95 / 0.42);
+
+    &:hover {
+      color: oklch(99% 0.004 95);
+      border-color: var(--primary);
+      background: color-mix(in oklch, var(--primary) 12%, transparent);
+    }
+  }
+
+  [data-theme="dark"] .card {
+    background: var(--bg-raised);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
 
   .badge,
@@ -2511,10 +2550,31 @@ hr {
     background: color-mix(in oklch, var(--bg-raised) 96%, white);
   }
 
+  [data-theme="dark"] .nav {
+    background: color-mix(in oklch, var(--bg) 82%, transparent);
+    border-bottom-color: oklch(98% 0.004 95 / 0.14);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+  }
+
+  [data-theme="dark"] .nav-link {
+    color: oklch(98% 0.004 95 / 0.8);
+
+    &:hover {
+      color: oklch(99% 0.004 95);
+      background: oklch(100% 0 0 / 0.09);
+    }
+
+    &.active {
+      color: oklch(99% 0.004 95);
+      background: color-mix(in oklch, var(--primary) 16%, transparent);
+    }
+  }
+
   .hero-badges .badge-primary,
   .feature-icon.fi-primary {
-    background: color-mix(in oklch, var(--primary) 18%, white);
-    color: color-mix(in oklch, var(--primary) 86%, var(--secondary));
-    border-color: color-mix(in oklch, var(--primary) 34%, white);
+    background: color-mix(in oklch, var(--primary) 18%, transparent);
+    color: oklch(98% 0.004 95);
+    border-color: color-mix(in oklch, var(--primary) 44%, transparent);
   }
 }
