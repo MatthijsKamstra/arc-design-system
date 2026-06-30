@@ -1,6 +1,6 @@
 # ARC CSS — Project Context
 
-A layered pure-CSS design system. No preprocessor, no runtime JS for styling. One codebase, ten theme variants, zero dependencies.
+A layered pure-CSS design system. No preprocessor, no runtime JS for styling. One codebase, eleven theme variants, zero dependencies.
 
 ---
 
@@ -66,6 +66,7 @@ Each theme file wraps everything in `@layer arc.theme { :root { … } }`.
 | ------------------------- | ------------ | ------------------------------------ |
 | `theme-high-contrast.css` | Contrast     | Outdoor readability in bright light  |
 | `theme-colorblind.css`    | Colorblind   | CVD-safe contrast palette            |
+| `theme-xyntrel.css`       | Xyntrel      | Trust, collaboration, intelligence   |
 | `theme-cyber.css`         | Cyber        | Space/cyberpunk, neon glow, Orbitron |
 | `theme-boy.css`           | Boy          | Blue-forward, sharp, high-contrast   |
 | `theme-girly.css`         | Girl         | Pink-forward, playful, rounded       |
@@ -144,7 +145,7 @@ When updating:
 
 - Theme bar buttons: `<button data-theme="<name>">Label</button>`
 - Navbar theme select: `<select id="theme-select" class="select">…</select>`
-- Default order in both switchers: `Default Core`, `Contrast`, `Colorblind`, then the rest
+- Default order in both switchers: `Default Core`, `Contrast`, `Colorblind`, `Xyntrel`, then the rest
 - File structure code block: keep in sync with actual files
 - Build output code block: keep in sync with `build.js` outputs
 - Hero badge: update "N themes" count when themes are added

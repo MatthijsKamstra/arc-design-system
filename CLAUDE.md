@@ -93,7 +93,7 @@ Hier gebeurt het volgende:
 - `arc.css` definieert layer-volgorde en importeert alle onderdelen.
 - `core/` bevat tokens, reset, base layout en animaties.
 - `components/` bevat de herbruikbare UI-blokken van het design system.
-- `themes/` bevat visuele varianten zoals cyber, corporate en editorial.
+- `themes/` bevat visuele varianten zoals xyntrel, cyber, corporate en editorial.
 - `build.js` concateneert alles naar `dist/` distributiebestanden.
 - `index.html` is de showcase waarin alle onderdelen en themes getoond worden.
 - De showcase heeft zowel een theme-bar als een navbar-pulldown voor theme-keuze.

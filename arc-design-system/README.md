@@ -22,6 +22,7 @@ Zonder theme laadt het systeem met de clean default palette.
 | -------------------------------- | ---------- | ------------------------------------------ |
 | `themes/theme-high-contrast.css` | Contrast   | Outdoor leesbaarheid, sterke contrasten    |
 | `themes/theme-colorblind.css`    | Colorblind | Kleurblind-vriendelijke contrastset        |
+| `themes/theme-xyntrel.css`       | Xyntrel    | Vertrouwen, samenwerking en scherpe tech   |
 | `themes/theme-cyber.css`         | Cyber      | Space/cyberpunk, neon glow, Orbitron font  |
 | `themes/theme-boy.css`           | Boy        | Blauw-gedreven, scherp en contrastrijk     |
 | `themes/theme-girly.css`         | Girl       | Pink-gedreven, rond en speels              |
@@ -36,9 +37,10 @@ Zonder theme laadt het systeem met de clean default palette.
 1. `Default Core`
 2. `Contrast`
 3. `Colorblind`
-4. `Boy`
-5. `Girl`
-6. de overige themes
+4. `Xyntrel`
+5. `Boy`
+6. `Girl`
+7. de overige themes
 
 Voor `Contrast` en `Colorblind` is de hero-foto bewust uitgezet. Die themes sturen op leesbaarheid en betekenis, niet op decoratieve beeldlagen.
 
@@ -75,6 +77,7 @@ node build.js
 # → dist/arc.boy.css
 # → dist/arc.high-contrast.css
 # → dist/arc.colorblind.css
+# → dist/arc.xyntrel.css
 # → dist/arc.bootstrap.css
 # → dist/arc.tailwind.css
 # → dist/arc.corporate.css
@@ -132,6 +135,7 @@ arc-design-system/
 ├── themes/
 │   ├── theme-high-contrast.css
 │   ├── theme-colorblind.css
+│   ├── theme-xyntrel.css
 │   ├── theme-cyber.css
 │   ├── theme-boy.css
 │   ├── theme-girly.css

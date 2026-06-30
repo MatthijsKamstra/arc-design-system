@@ -33,6 +33,10 @@
       scrollbar-width: none;
     }
 
+    .theme-bar.hidden {
+      display: none;
+    }
+
     .theme-bar::-webkit-scrollbar {
       display: none;
     }
@@ -341,6 +345,7 @@
         <option value="default">Default Core</option>
         <option value="high-contrast">Contrast</option>
         <option value="colorblind">Colorblind</option>
+        <option value="xyntrel">Xyntrel</option>
         <option value="boy">Boy</option>
         <option value="girly">Girl</option>
         <option value="cyber">Cyber</option>
@@ -359,7 +364,7 @@
   </nav>
 
   <!-- ── Theme picker bar ─────────────────────────────────── -->
-  <div class="theme-bar">
+  <div class="theme-bar hidden">
     <span
       style="font-size: var(--text-xs); color: var(--text-faint); letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;">Theme:</span>
     <button class="theme-btn active" data-theme="default" type="button" aria-pressed="true">
@@ -370,6 +375,9 @@
     </button>
     <button class="theme-btn" data-theme="colorblind" type="button" aria-pressed="false">
       <span class="dot"></span>Colorblind
+    </button>
+    <button class="theme-btn" data-theme="xyntrel" type="button" aria-pressed="false">
+      <span class="dot"></span>Xyntrel
     </button>
     <button class="theme-btn" data-theme="boy" type="button" aria-pressed="false">
       <span class="dot"></span>Boy
@@ -416,6 +424,7 @@
         A layered CSS design system built on <strong>modern CSS</strong> — <code>@layer</code>,
         <code>oklch()</code>,
         <code>color-mix()</code>, CSS nesting. One HTML codebase, ten themes, zero build step.
+        <code>color-mix()</code>, CSS nesting. One HTML codebase, eleven themes, zero build step.
       </p>
 
       <div class="hero-cta">
@@ -663,6 +672,7 @@
               <option>Default Core</option>
               <option>Contrast</option>
               <option>Colorblind</option>
+              <option>Xyntrel</option>
               <option>Boy</option>
               <option>Girl</option>
             </select>
@@ -980,6 +990,7 @@
 <span class="tk-str">dist/arc.boy.css</span>
 <span class="tk-str">dist/arc.high-contrast.css</span>
 <span class="tk-str">dist/arc.colorblind.css</span>
+<span class="tk-str">dist/arc.xyntrel.css</span>
 <span class="tk-str">dist/arc.bootstrap.css</span>
 <span class="tk-str">dist/arc.tailwind.css</span>
 <span class="tk-str">dist/arc.corporate.css</span>
@@ -1021,6 +1032,7 @@
 │   ├── <span class="tk-str">theme-boy.css</span>       <span class="tk-cm">← boy</span>
 │   ├── <span class="tk-str">theme-high-contrast.css</span> <span class="tk-cm">← outdoor readability</span>
 │   ├── <span class="tk-str">theme-colorblind.css</span> <span class="tk-cm">← CVD-safe palette</span>
+│   ├── <span class="tk-str">theme-xyntrel.css</span>    <span class="tk-cm">← trust &amp; tech</span>
 │   ├── <span class="tk-str">theme-bootstrap.css</span> <span class="tk-cm">← Bootstrap-like</span>
 │   ├── <span class="tk-str">theme-tailwind.css</span>  <span class="tk-cm">← Breeze/minimal</span>
 │   ├── <span class="tk-str">theme-corporate.css</span> <span class="tk-cm">← Suite/corporate</span>

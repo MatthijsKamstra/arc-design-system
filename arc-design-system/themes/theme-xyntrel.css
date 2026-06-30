@@ -1,0 +1,164 @@
+/* ============================================================
+   THEME: Xyntrel
+  Based on xyntrel.com brand cues.
+  Palette anchored in dark teal, orange, white, and cool teal accents.
+  Typography anchored in Plus Jakarta Sans.
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
+@layer arc.theme {
+  :root {
+    --xy-deep: oklch(30% 0.05 190);
+    --xy-teal: oklch(31% 0.05 190);
+    --xy-teal-2: oklch(46% 0.08 191);
+    --xy-cyan: oklch(65% 0.11 221);
+    --xy-orange: oklch(74% 0.17 55);
+    --xy-cream: oklch(98% 0.003 95);
+    --xy-paper: oklch(95% 0.004 95);
+    --xy-slate: oklch(52% 0.02 230);
+
+    --primary: var(--xy-orange);
+    --secondary: var(--xy-teal);
+    --accent: var(--xy-cyan);
+    --success: var(--xy-teal-2);
+    --warning: oklch(82% 0.13 85);
+    --danger: oklch(63% 0.16 32);
+
+    /* Site default is light with dark teal sections */
+    --bg: oklch(99% 0.002 95);
+    --bg-raised: var(--xy-cream);
+    --bg-overlay: var(--xy-paper);
+    --border: oklch(87% 0.01 215);
+
+    --text: oklch(22% 0.024 205);
+    --text-muted: oklch(41% 0.02 215);
+    --text-faint: oklch(58% 0.015 220);
+
+    --font-display: "Plus Jakarta Sans", system-ui, sans-serif;
+    --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+
+    --hero-photo: url("https://picsum.photos/seed/arc-xyntrel-office-people/2400/1400");
+    --hero-photo-position: center 38%;
+
+    --btn-primary-text: oklch(99% 0.002 95);
+
+    --r-sm: 0.4rem;
+    --r: 0.65rem;
+    --r-md: 0.8rem;
+    --r-lg: 1rem;
+    --r-xl: 1.2rem;
+    --r-2xl: 1.5rem;
+
+    --glow-sm: none;
+    --glow: none;
+    --glow-lg: none;
+
+    --shadow-sm: 0 1px 2px oklch(0% 0 0 / 0.08);
+    --shadow: 0 8px 20px oklch(0% 0 0 / 0.1);
+    --shadow-lg: 0 16px 36px oklch(0% 0 0 / 0.12);
+  }
+
+  [data-theme="dark"] {
+    --bg: oklch(13% 0.02 196);
+    --bg-raised: oklch(18% 0.022 196);
+    --bg-overlay: oklch(23% 0.024 196);
+    --border: oklch(34% 0.03 196);
+    --text: oklch(96% 0.004 95);
+    --text-muted: oklch(78% 0.012 196);
+    --text-faint: oklch(61% 0.014 196);
+    --btn-primary-text: oklch(18% 0.022 196);
+    --shadow-sm: 0 1px 3px oklch(0% 0 0 / 0.35);
+    --shadow: 0 10px 24px oklch(0% 0 0 / 0.26);
+    --shadow-lg: 0 18px 40px oklch(0% 0 0 / 0.32);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: oklch(13% 0.02 196);
+      --bg-raised: oklch(18% 0.022 196);
+      --bg-overlay: oklch(23% 0.024 196);
+      --border: oklch(34% 0.03 196);
+      --text: oklch(96% 0.004 95);
+      --text-muted: oklch(78% 0.012 196);
+      --text-faint: oklch(61% 0.014 196);
+      --btn-primary-text: oklch(18% 0.022 196);
+    }
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: var(--btn-primary-text);
+    font-weight: 700;
+    border-radius: var(--r-full);
+    box-shadow: none;
+
+    &:hover {
+      background: color-mix(in oklch, var(--primary) 88%, white);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+
+  .btn-secondary {
+    background: var(--secondary);
+    color: oklch(98% 0.002 95);
+    border-radius: var(--r-full);
+
+    &:hover {
+      background: color-mix(in oklch, var(--secondary) 92%, white);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+
+  .btn-ghost {
+    color: var(--secondary);
+    border-color: color-mix(in oklch, var(--secondary) 28%, var(--border));
+
+    &:hover {
+      background: color-mix(in oklch, var(--secondary) 8%, white);
+      border-color: var(--secondary);
+    }
+  }
+
+  .badge,
+  .badge-primary,
+  .badge-secondary,
+  .badge-accent,
+  .badge-warning,
+  .badge-success,
+  .badge-danger {
+    border-radius: var(--r-full);
+    font-weight: 700;
+  }
+
+  .card-hover,
+  .card-glow {
+    border-color: color-mix(in oklch, var(--secondary) 24%, var(--border));
+
+    &:hover {
+      border-color: color-mix(in oklch, var(--secondary) 42%, var(--border));
+      box-shadow: var(--shadow);
+    }
+  }
+
+  .card-glow {
+    box-shadow: var(--shadow-sm);
+  }
+
+  .text-gradient {
+    background: none;
+    -webkit-text-fill-color: var(--secondary);
+    color: var(--secondary);
+  }
+
+  .nav {
+    background: color-mix(in oklch, var(--bg-raised) 96%, white);
+  }
+
+  .hero-badges .badge-primary,
+  .feature-icon.fi-primary {
+    background: color-mix(in oklch, var(--primary) 18%, white);
+    color: color-mix(in oklch, var(--primary) 86%, var(--secondary));
+    border-color: color-mix(in oklch, var(--primary) 34%, white);
+  }
+}

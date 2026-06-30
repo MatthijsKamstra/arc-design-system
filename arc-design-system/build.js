@@ -13,6 +13,7 @@
  *   dist/arc.boy.css       — design system + boy theme
  *   dist/arc.high-contrast.css — design system + high-contrast theme
  *   dist/arc.colorblind.css — design system + colorblind-safe theme
+ *   dist/arc.xyntrel.css   — design system + xyntrel theme
  *   dist/arc.bootstrap.css — design system + bootstrap theme
  *   dist/arc.tailwind.css  — design system + tailwind theme
  *   dist/arc.corporate.css — design system + corporate theme
@@ -79,6 +80,7 @@ const THEMES = {
 	cyber: "themes/theme-cyber.css",
 	"high-contrast": "themes/theme-high-contrast.css",
 	colorblind: "themes/theme-colorblind.css",
+	xyntrel: "themes/theme-xyntrel.css",
 	popie: "themes/theme-popie.css",
 	bootstrap: "themes/theme-bootstrap.css",
 	tailwind: "themes/theme-tailwind.css",
