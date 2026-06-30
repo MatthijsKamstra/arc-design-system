@@ -11,6 +11,10 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
 
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕹️</text></svg>">
+
+
   <!-- Design system core -->
   <link rel="stylesheet" href="arc.css" />
   <!-- Active theme (hot-swapped by JS) -->
@@ -318,6 +322,99 @@
       }
     }
 
+    section[id],
+    .demo-panel[id],
+    .grid-auto-md[id],
+    .demo-panel+[id] {
+      scroll-margin-top: calc(var(--s12) + 4.5rem);
+    }
+
+    .type-specimen-grid {
+      display: grid;
+      gap: var(--s6);
+    }
+
+    .type-specimen {
+      display: grid;
+      grid-template-columns: minmax(5rem, 6.5rem) minmax(0, 1fr);
+      gap: var(--s4);
+      align-items: start;
+      padding-bottom: var(--s5);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .type-specimen:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .type-spec-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      padding-top: 0.4em;
+    }
+
+    .type-copy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--s4);
+    }
+
+    .type-copy-card {
+      padding: var(--s5);
+      border-radius: var(--r-xl);
+      border: 1px solid var(--border);
+      background: color-mix(in oklch, var(--bg-overlay) 88%, transparent);
+    }
+
+    .type-copy-card p:last-child,
+    .type-copy-card ul:last-child,
+    .type-copy-card blockquote:last-child {
+      margin-bottom: 0;
+    }
+
+    .type-kicker {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: var(--s2);
+    }
+
+    .type-note {
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+      margin-top: var(--s2);
+    }
+
+    .type-list {
+      padding-left: 1.2em;
+      color: var(--text-muted);
+    }
+
+    .type-quote {
+      margin: 0;
+      padding-left: var(--s4);
+      border-left: 3px solid color-mix(in oklch, var(--primary) 40%, transparent);
+      color: var(--text-muted);
+      font-size: var(--text-lg);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 840px) {
+      .nav {
+        flex-wrap: wrap;
+      }
+
+      .nav-spacer {
+        display: none;
+      }
+    }
+
     footer {
       border-top: 1px solid var(--border);
       padding-block: var(--s12);
@@ -333,9 +430,30 @@
     <a href="#" class="nav-brand">ARC<span class="brand-dot">.</span>CSS</a>
     <ul class="nav-items hide-mobile">
       <li><a href="#features" class="nav-link">Features</a></li>
-      <li><a href="#components" class="nav-link">Components</a></li>
+      <li class="dropdown">
+        <a href="#components" class="nav-link dropdown-toggle">Components</a>
+        <ul class="dropdown-menu">
+          <li><span class="dropdown-label">Component demos</span></li>
+          <li><a class="dropdown-item" href="#demo-buttons">Buttons</a></li>
+          <li><a class="dropdown-item" href="#demo-badges">Badges</a></li>
+          <li><a class="dropdown-item" href="#demo-cards">Cards</a></li>
+          <li><a class="dropdown-item" href="#demo-alerts">Alerts</a></li>
+          <li><a class="dropdown-item" href="#demo-forms">Forms</a></li>
+          <li><a class="dropdown-item" href="#demo-progress">Progress</a></li>
+          <li><a class="dropdown-item" href="#demo-extras">Stats + Timeline</a></li>
+        </ul>
+      </li>
       <li><a href="#colors" class="nav-link">Colors</a></li>
-      <li><a href="#typography" class="nav-link">Typography</a></li>
+      <li class="dropdown">
+        <a href="#typography" class="nav-link dropdown-toggle">Typography</a>
+        <ul class="dropdown-menu">
+          <li><span class="dropdown-label">Typografie</span></li>
+          <li><a class="dropdown-item" href="#typography">Overview</a></li>
+          <li><a class="dropdown-item" href="#type-scale">Type scale</a></li>
+          <li><a class="dropdown-item" href="#type-headings">H1 to H6</a></li>
+          <li><a class="dropdown-item" href="#type-copy">Body copy</a></li>
+        </ul>
+      </li>
       <li><a href="#usage" class="btn btn-primary btn-sm">Get Started</a></li>
 
     </ul>
@@ -425,7 +543,6 @@
         A layered CSS design system built on <strong>modern CSS</strong> — <code>@layer</code>,
         <code>oklch()</code>,
         <code>color-mix()</code>, CSS nesting. One HTML codebase, ten themes, zero build step.
-        <code>color-mix()</code>, CSS nesting. One HTML codebase, eleven themes, zero build step.
       </p>
 
       <div class="hero-cta">
@@ -517,7 +634,7 @@
       <p class="section-desc">All components respond to the active theme and dark/light mode.</p>
 
       <!-- Buttons -->
-      <div class="demo-panel">
+      <div class="demo-panel" id="demo-buttons">
         <div class="demo-header">
           <span class="demo-label">Buttons — components/buttons.css</span>
           <span class="badge badge-primary">hover for effect</span>
@@ -553,7 +670,7 @@
       </div>
 
       <!-- Badges -->
-      <div class="demo-panel">
+      <div class="demo-panel" id="demo-badges">
         <div class="demo-header">
           <span class="demo-label">Badges — components/badges.css</span>
         </div>
@@ -571,7 +688,7 @@
       </div>
 
       <!-- Cards -->
-      <div class="grid-auto-md mb-8">
+      <div class="grid-auto-md mb-8" id="demo-cards">
         <div class="card card-hover">
           <div class="card-header">
             <h4 class="card-title">Default Card</h4>
@@ -609,7 +726,7 @@
       </div>
 
       <!-- Alerts -->
-      <div class="demo-panel">
+      <div class="demo-panel" id="demo-alerts">
         <div class="demo-header">
           <span class="demo-label">Alerts — components/alerts.css</span>
         </div>
@@ -648,7 +765,7 @@
       </div>
 
       <!-- Forms -->
-      <div class="demo-panel">
+      <div class="demo-panel" id="demo-forms">
         <div class="demo-header">
           <span class="demo-label">Forms — components/forms.css</span>
         </div>
@@ -715,7 +832,7 @@
       </div>
 
       <!-- Progress -->
-      <div class="demo-panel">
+      <div class="demo-panel" id="demo-progress">
         <div class="demo-header">
           <span class="demo-label">Progress — components/progress.css</span>
         </div>
@@ -759,7 +876,7 @@
       </div>
 
       <!-- Extra components -->
-      <div class="demo-panel">
+      <div class="demo-panel" id="demo-extras">
         <div class="demo-header">
           <span class="demo-label">Stats + Timeline — components/extras.css</span>
           <span class="badge badge-secondary">new</span>
@@ -872,7 +989,7 @@
       <p class="section-desc">All sizes use <code>clamp()</code> — they scale between breakpoints without media queries.
       </p>
 
-      <div class="demo-panel">
+      <div class="demo-panel" id="type-scale">
         <div class="demo-header">
           <span class="demo-label">Type scale · core/tokens.css</span>
           <span class="badge badge-ghost">Display font from theme</span>
@@ -905,6 +1022,96 @@
           <div class="type-row">
             <span class="type-meta">mono</span>
             <span class="font-mono text-sm">const primary = oklch(82% 0.17 194);</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-panel" id="type-headings">
+        <div class="demo-header">
+          <span class="demo-label">Headings · h1 to h6</span>
+          <span class="badge badge-primary">semantic samples</span>
+        </div>
+        <div class="demo-body-col">
+          <p class="type-note">Gebruik deze rij om snel te zien hoe headings reageren op theme, display font en spacing.
+          </p>
+          <div class="type-specimen-grid">
+            <div class="type-specimen">
+              <span class="type-spec-label">H1</span>
+              <div>
+                <h1 class="font-display" style="font-size: var(--text-6xl); line-height: 1; margin: 0;">Launch your next
+                  system</h1>
+                <p class="type-note">Hero-level heading met display font en compacte line-height.</p>
+              </div>
+            </div>
+            <div class="type-specimen">
+              <span class="type-spec-label">H2</span>
+              <div>
+                <h2 style="font-size: var(--text-4xl); margin: 0;">Component library overview</h2>
+                <p class="type-note">Sectietitel voor hoofdniveaus binnen de showcase.</p>
+              </div>
+            </div>
+            <div class="type-specimen">
+              <span class="type-spec-label">H3</span>
+              <div>
+                <h3 style="font-size: var(--text-2xl); margin: 0;">Buttons, forms and states</h3>
+                <p class="type-note">Subsectie voor componentgroepen en documentatieblokken.</p>
+              </div>
+            </div>
+            <div class="type-specimen">
+              <span class="type-spec-label">H4</span>
+              <div>
+                <h4 style="font-size: var(--text-xl); margin: 0;">Card header title</h4>
+                <p class="type-note">Goed voor cards, panels en compacte UI-secties.</p>
+              </div>
+            </div>
+            <div class="type-specimen">
+              <span class="type-spec-label">H5</span>
+              <div>
+                <h5 style="font-size: var(--text-lg); margin: 0;">Supportive heading</h5>
+                <p class="type-note">Geschikt voor lijsten, settings of detailpanelen.</p>
+              </div>
+            </div>
+            <div class="type-specimen">
+              <span class="type-spec-label">H6</span>
+              <div>
+                <h6 class="font-mono"
+                  style="font-size: var(--text-sm); letter-spacing: 0.14em; text-transform: uppercase; margin: 0;">Meta
+                  label heading</h6>
+                <p class="type-note">Kleinste headingniveau voor labels, meta en overline-achtige kopjes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-panel" id="type-copy">
+        <div class="demo-header">
+          <span class="demo-label">Body copy · paragraphs, lists, quote</span>
+          <span class="badge badge-secondary">editorial check</span>
+        </div>
+        <div class="demo-body-col">
+          <div class="type-copy-grid">
+            <article class="type-copy-card">
+              <p class="type-kicker">Paragraph</p>
+              <p class="text-lg">ARC CSS separates structure from mood. Tokens define the system, theme files change the
+                voice.</p>
+              <p class="text-sm text-muted">This is the default reading rhythm for longer product copy and
+                documentation.</p>
+            </article>
+            <article class="type-copy-card">
+              <p class="type-kicker">List</p>
+              <ul class="type-list">
+                <li>Use display type for brand moments.</li>
+                <li>Keep body text on the default stack for readability.</li>
+                <li>Reserve mono for code, meta labels and data points.</li>
+              </ul>
+            </article>
+            <article class="type-copy-card">
+              <p class="type-kicker">Quote</p>
+              <blockquote class="type-quote">
+                One HTML codebase can shift from corporate to editorial to cyber without rewriting a component.
+              </blockquote>
+            </article>
           </div>
         </div>
       </div>
