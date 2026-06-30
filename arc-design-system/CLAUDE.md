@@ -62,18 +62,18 @@ All tokens live in `:root {}` inside `@layer arc.tokens`.
 
 Each theme file wraps everything in `@layer arc.theme { :root { … } }`.
 
-| File                      | Display name    | Character                            |
-| ------------------------- | --------------- | ------------------------------------ |
-| `theme-cyber.css`         | Cyber           | Space/cyberpunk, neon glow, Orbitron |
-| `theme-boy.css`           | Boy             | Loud, sharp, high-impact             |
-| `theme-girly.css`         | Girly           | Candy, rounded, dramatic             |
-| `theme-high-contrast.css` | Field Contrast  | Outdoor readability in bright light  |
-| `theme-colorblind.css`    | Colorblind Safe | CVD-safe contrast palette            |
-| `theme-popie.css`         | Popie           | K-pop, vivid, high contrast          |
-| `theme-bootstrap.css`     | Bootstrap       | Bootstrap blue, familiar             |
-| `theme-tailwind.css`      | Breeze          | Indigo, minimal, rounded             |
-| `theme-corporate.css`     | Suite           | Navy, conservative                   |
-| `theme-editorial.css`     | Editorial       | Monochrome luxe, serif, copper       |
+| File                      | Display name | Character                            |
+| ------------------------- | ------------ | ------------------------------------ |
+| `theme-high-contrast.css` | Contrast     | Outdoor readability in bright light  |
+| `theme-colorblind.css`    | Colorblind   | CVD-safe contrast palette            |
+| `theme-cyber.css`         | Cyber        | Space/cyberpunk, neon glow, Orbitron |
+| `theme-boy.css`           | Boy          | Blue-forward, sharp, high-contrast   |
+| `theme-girly.css`         | Girl         | Pink-forward, playful, rounded       |
+| `theme-popie.css`         | Popie        | K-pop, vivid, high contrast          |
+| `theme-bootstrap.css`     | Bootstrap    | Bootstrap blue, familiar             |
+| `theme-tailwind.css`      | Breeze       | Indigo, minimal, rounded             |
+| `theme-corporate.css`     | Suite        | Navy, conservative                   |
+| `theme-editorial.css`     | Editorial    | Monochrome luxe, serif, copper       |
 
 ### Hero images (per theme)
 
@@ -83,6 +83,13 @@ Each theme file wraps everything in `@layer arc.theme { :root { … } }`.
 ```
 
 Seeds follow the pattern `arc-<theme>-<keyword>`, e.g. `arc-cyber-neon`.
+
+Accessibility exception:
+
+- `theme-high-contrast.css` sets `--hero-photo: none`
+- `theme-colorblind.css` sets `--hero-photo: none`
+
+Reason: these themes prioritize legibility and semantic clarity over decorative imagery.
 
 ### New theme checklist
 
@@ -94,7 +101,13 @@ Seeds follow the pattern `arc-<theme>-<keyword>`, e.g. `arc-cyber-neon`.
 - [ ] Set `--hero-photo` + `--hero-photo-position`
 - [ ] Register in `build.js` `THEMES` object
 - [ ] Add theme bar button in `index.html`
+- [ ] Add navbar theme `<select>` entry in `index.html`
 - [ ] Run `node build.js` and verify output
+
+If the theme is accessibility-first:
+
+- [ ] Decide whether `--hero-photo` should be `none`
+- [ ] Add or update a proof document explaining why the theme works in dark and light mode
 
 ---
 
@@ -108,7 +121,7 @@ Seeds follow the pattern `arc-<theme>-<keyword>`, e.g. `arc-cyber-neon`.
 | `badges.css`     | `arc.components.badges`   | `.badge`, `.badge-primary`, `.badge-success`, etc.           |
 | `cards.css`      | `arc.components.cards`    | `.card`, `.card-body`, `.card-glow`                          |
 | `alerts.css`     | `arc.components.alerts`   | `.alert`, `.alert-info`, `.alert-danger`, etc.               |
-| `forms.css`      | `arc.components.forms`    | Input, select, textarea, label                               |
+| `forms.css`      | `arc.components.forms`    | Input, select, textarea, label, custom select arrow styling  |
 | `nav.css`        | `arc.components.nav`      | Top navigation bar                                           |
 | `progress.css`   | `arc.components.progress` | `.progress`, `.progress-bar`                                 |
 | `code-block.css` | `arc.components.code`     | `<pre><code>` styling                                        |
@@ -130,6 +143,8 @@ Single HTML file, no framework. Loads `arc.css` + active theme via `data-theme` 
 When updating:
 
 - Theme bar buttons: `<button data-theme="<name>">Label</button>`
+- Navbar theme select: `<select id="theme-select" class="select">…</select>`
+- Default order in both switchers: `Default Core`, `Contrast`, `Colorblind`, then the rest
 - File structure code block: keep in sync with actual files
 - Build output code block: keep in sync with `build.js` outputs
 - Hero badge: update "N themes" count when themes are added

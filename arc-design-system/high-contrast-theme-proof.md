@@ -1,4 +1,4 @@
-# High Contrast Field Theme - Onderbouwing
+# Contrast Theme - Onderbouwing
 
 Dit document onderbouwt waarom `themes/theme-high-contrast.css` geschikt is voor gebruik in fel buitenlicht (tablet/iPad in het veld), in zowel dark mode als light mode.
 
@@ -13,6 +13,7 @@ Dit theme is gemaakt voor leesbaarheid en snelle herkenning, niet voor subtiele 
 - Hoge fontgewichten op knoppen.
 - Minder afhankelijkheid van glow, schaduw en subtiele tonal shifts.
 - Korte radius (minder zachte vormen), waardoor contouren scherper zichtbaar zijn.
+- Geen decoratieve hero-foto, zodat tekst en componentranden dominant blijven.
 
 ## Waarom dit werkt in fel licht
 
@@ -41,7 +42,7 @@ Effect:
 
 Voer deze checks uit op `index.html`:
 
-1. Zet theme op `Field Contrast`.
+1. Zet theme op `Contrast`.
 2. Test in light mode en dark mode.
 3. Simuleer glare-conditie:
    - schermhelderheid omlaag

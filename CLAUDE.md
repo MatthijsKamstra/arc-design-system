@@ -96,6 +96,8 @@ Hier gebeurt het volgende:
 - `themes/` bevat visuele varianten zoals cyber, corporate en editorial.
 - `build.js` concateneert alles naar `dist/` distributiebestanden.
 - `index.html` is de showcase waarin alle onderdelen en themes getoond worden.
+- De showcase heeft zowel een theme-bar als een navbar-pulldown voor theme-keuze.
+- `colorblind-theme-proof.md` en `high-contrast-theme-proof.md` onderbouwen de accessibility-themes.
 
 Werk in deze map als de vraag gaat over het design system zelf, niet over de web component demo-app.
 

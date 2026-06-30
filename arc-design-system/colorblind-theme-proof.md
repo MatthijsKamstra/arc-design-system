@@ -1,4 +1,4 @@
-# Colorblind Safe Theme - Onderbouwing
+# Colorblind Theme - Onderbouwing
 
 Dit document onderbouwt waarom `themes/theme-colorblind.css` werkt voor gebruikers met kleurenzienstoornissen, in zowel dark mode als light mode.
 
@@ -35,6 +35,7 @@ Randen en componentgewicht zijn duidelijker dan in zachte desktop-themes:
 - duidelijke `--border`
 - zwaardere labels en badges
 - geen glow-afhankelijk semantisch signaal
+- geen decoratieve hero-foto die contrast of betekenis visueel vertroebelt
 
 ## Dark mode en light mode
 
@@ -53,7 +54,7 @@ Effect:
 
 Voer deze checks uit op `index.html`:
 
-1. Zet theme op `Colorblind Safe`.
+1. Zet theme op `Colorblind`.
 2. Test light en dark via de mode toggle.
 3. Simuleer CVD in browser devtools (deuteranopia/protanopia/tritanopia).
 4. Controleer dat je zonder kleurkennis nog kunt onderscheiden:

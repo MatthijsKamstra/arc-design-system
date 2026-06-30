@@ -2,6 +2,8 @@
 
 A layered CSS design system built on modern CSS — `@layer`, `oklch()`, `color-mix()`, CSS nesting. One HTML codebase, multiple themes, zero build step required.
 
+De showcase start op `Default Core`. Theme kiezen kan via de navbar-pulldown en via de theme-bar.
+
 ## Gebruik
 
 ```html
@@ -16,18 +18,39 @@ Zonder theme laadt het systeem met de clean default palette.
 
 ## Themes
 
-| Bestand                          | Naam            | Karakter                                        |
-| -------------------------------- | --------------- | ----------------------------------------------- |
-| `themes/theme-cyber.css`         | Cyber           | Space/cyberpunk, neon glow, Orbitron font       |
-| `themes/theme-popie.css`         | Popie           | K-pop vibe, levendig, hoge contrasten           |
-| `themes/theme-girly.css`         | Girly           | Over-the-top, candy kleuren, rond en dramatisch |
-| `themes/theme-boy.css`           | Boy             | Over-the-top, hard contrast, strak en luid      |
-| `themes/theme-high-contrast.css` | Field Contrast  | Outdoor leesbaarheid, sterke contrasten         |
-| `themes/theme-colorblind.css`    | Colorblind Safe | Kleurblind-vriendelijke contrastset             |
-| `themes/theme-bootstrap.css`     | Bootstrap       | Bootstrap blauw, strak, vertrouwd               |
-| `themes/theme-tailwind.css`      | Breeze          | Indigo, ronde hoeken, minimaal                  |
-| `themes/theme-corporate.css`     | Suite           | Navy blauw, conservatief                        |
-| `themes/theme-editorial.css`     | Editorial       | Monochrome luxe, serif display, koper tint      |
+| Bestand                          | Naam       | Karakter                                   |
+| -------------------------------- | ---------- | ------------------------------------------ |
+| `themes/theme-high-contrast.css` | Contrast   | Outdoor leesbaarheid, sterke contrasten    |
+| `themes/theme-colorblind.css`    | Colorblind | Kleurblind-vriendelijke contrastset        |
+| `themes/theme-cyber.css`         | Cyber      | Space/cyberpunk, neon glow, Orbitron font  |
+| `themes/theme-boy.css`           | Boy        | Blauw-gedreven, scherp en contrastrijk     |
+| `themes/theme-girly.css`         | Girl       | Pink-gedreven, rond en speels              |
+| `themes/theme-popie.css`         | Popie      | K-pop vibe, levendig, hoge contrasten      |
+| `themes/theme-bootstrap.css`     | Bootstrap  | Bootstrap blauw, strak, vertrouwd          |
+| `themes/theme-tailwind.css`      | Breeze     | Indigo, ronde hoeken, minimaal             |
+| `themes/theme-corporate.css`     | Suite      | Navy blauw, conservatief                   |
+| `themes/theme-editorial.css`     | Editorial  | Monochrome luxe, serif display, koper tint |
+
+## Theme volgorde in de showcase
+
+1. `Default Core`
+2. `Contrast`
+3. `Colorblind`
+4. `Boy`
+5. `Girl`
+6. de overige themes
+
+Voor `Contrast` en `Colorblind` is de hero-foto bewust uitgezet. Die themes sturen op leesbaarheid en betekenis, niet op decoratieve beeldlagen.
+
+## Accessibility onderbouwing
+
+- `colorblind-theme-proof.md` legt uit waarom `Colorblind` werkt in light en dark mode.
+- `high-contrast-theme-proof.md` legt uit waarom `Contrast` werkt in light en dark mode.
+
+## Theme kiezen in de showcase
+
+- In de navbar staat een `select` met dezelfde theme-volgorde als de theme-bar.
+- De forms-demo bevat ook een `select` voorbeeld dat dezelfde componentstijl gebruikt.
 
 ## Eigen theme maken
 
@@ -107,15 +130,17 @@ arc-design-system/
 ├── utilities/
 │   └── utilities.css
 ├── themes/
-│   ├── theme-cyber.css
-│   ├── theme-popie.css
-│   ├── theme-girly.css
-│   ├── theme-boy.css
 │   ├── theme-high-contrast.css
 │   ├── theme-colorblind.css
+│   ├── theme-cyber.css
+│   ├── theme-boy.css
+│   ├── theme-girly.css
+│   ├── theme-popie.css
 │   ├── theme-bootstrap.css
 │   ├── theme-tailwind.css
 │   ├── theme-corporate.css
 │   └── theme-editorial.css
+├── colorblind-theme-proof.md
+├── high-contrast-theme-proof.md
 └── build.js
 ```
