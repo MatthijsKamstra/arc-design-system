@@ -1,0 +1,111 @@
+/* ============================================================
+   ARC — Extra Components
+   Stats and Timeline components for dashboards and product pages.
+   ============================================================ */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: var(--s4);
+}
+
+.stat-card {
+  padding: var(--s5);
+  border-radius: var(--r-xl);
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--t),
+    border-color var(--t),
+    box-shadow var(--t);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklch, var(--primary) 40%, var(--border));
+  box-shadow: var(--shadow);
+}
+
+.stat-label {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+  margin-bottom: var(--s2);
+}
+
+.stat-value {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.05;
+}
+
+.stat-delta {
+  margin-top: var(--s2);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.stat-delta-up {
+  color: var(--success);
+}
+
+.stat-delta-down {
+  color: var(--danger);
+}
+
+.timeline {
+  position: relative;
+  display: grid;
+  gap: var(--s5);
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: color-mix(in oklch, var(--primary) 25%, var(--border));
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: var(--s8);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid color-mix(in oklch, var(--primary) 50%, var(--border));
+  background: var(--bg-raised);
+  box-shadow: var(--glow-sm);
+}
+
+.timeline-meta {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+  margin-bottom: var(--s1);
+}
+
+.timeline-title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: var(--s1);
+}
+
+.timeline-body {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}

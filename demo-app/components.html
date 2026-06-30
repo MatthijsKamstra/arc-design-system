@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Componenten — WebComponents App</title>
+	<link rel="stylesheet" href="css/app.css" />
+</head>
+
+<body>
+
+	<ui-nav current="components.html"></ui-nav>
+
+	<div class="container">
+		<h1 class="mb-1">Componenten</h1>
+		<p class="text-muted mb-5">
+			Dezelfde kaart, twee implementaties. Links Light DOM (Bootstrap), rechts Shadow DOM (eigen CSS).
+		</p>
+
+		<!-- ─── Side-by-side vergelijking ─── -->
+		<div class="row g-4 mb-5">
+
+			<div class="col-md-6">
+				<h2 class="h6 text-uppercase text-muted mb-3">Light DOM — Bootstrap</h2>
+
+				<demo-card-light>
+					<span data-header>Gebruikersprofiel</span>
+					<div data-body>
+						<p><strong>Naam:</strong> Jan de Vries</p>
+						<p class="mb-0"><strong>Rol:</strong> Administrator</p>
+					</div>
+				</demo-card-light>
+
+				<div class="mt-4 p-3 bg-light rounded small">
+					<strong>Hoe werkt het?</strong>
+					<ul class="mb-0 mt-2">
+						<li>Geen <code>attachShadow()</code></li>
+						<li>Content via <code>data-header</code> en <code>data-body</code></li>
+						<li>Bootstrap <code>card</code>, <code>card-header</code> werken direct</li>
+						<li>Alles zichtbaar in DevTools zonder shadow root</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<h2 class="h6 text-uppercase text-muted mb-3">Shadow DOM — eigen CSS</h2>
+
+				<demo-card-shadow>
+					<span slot="header">Gebruikersprofiel</span>
+					<p><strong>Naam:</strong> Sara Jansen</p>
+					<p class="mb-0"><strong>Rol:</strong> Redacteur</p>
+				</demo-card-shadow>
+
+				<div class="mt-4 p-3 bg-light rounded small">
+					<strong>Hoe werkt het?</strong>
+					<ul class="mb-0 mt-2">
+						<li><code>attachShadow({ mode: 'open' })</code></li>
+						<li>Content via <code>slot="header"</code> en default slot</li>
+						<li>Bootstrap bereikt de shadow root <em>niet</em></li>
+						<li>DevTools toont aparte <code>#shadow-root</code></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- ─── Code vergelijking ─── -->
+		<h2 class="h5 mb-3">Gebruik in HTML</h2>
+		<div class="row g-4 mb-5">
+			<div class="col-md-6">
+				<pre class="bg-light p-3 rounded small"><code>&lt;!-- Light DOM --&gt;
+&lt;demo-card-light&gt;
+  &lt;span data-header&gt;Titel&lt;/span&gt;
+  &lt;div data-body&gt;
+    &lt;p&gt;Inhoud&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/demo-card-light&gt;</code></pre>
+			</div>
+			<div class="col-md-6">
+				<pre class="bg-light p-3 rounded small"><code>&lt;!-- Shadow DOM --&gt;
+&lt;demo-card-shadow&gt;
+  &lt;span slot="header"&gt;Titel&lt;/span&gt;
+  &lt;p&gt;Inhoud&lt;/p&gt;
+&lt;/demo-card-shadow&gt;</code></pre>
+			</div>
+		</div>
+
+		<!-- ─── Wanneer wat ─── -->
+		<h2 class="h5 mb-3">Wanneer gebruik je wat?</h2>
+		<div class="table-responsive">
+			<table class="table table-bordered">
+				<thead class="table-light">
+					<tr>
+						<th></th>
+						<th>Light DOM</th>
+						<th>Shadow DOM</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Bootstrap werkt</td>
+						<td><span class="badge bg-success">Ja</span></td>
+						<td><span class="badge bg-danger">Nee</span></td>
+					</tr>
+					<tr>
+						<td>CSS-encapsulatie</td>
+						<td><span class="badge bg-secondary">Nee</span></td>
+						<td><span class="badge bg-success">Ja</span></td>
+					</tr>
+					<tr>
+						<td>Content injecteren</td>
+						<td><code>data-*</code> + querySelector</td>
+						<td>slots</td>
+					</tr>
+					<tr>
+						<td>Debugging</td>
+						<td>Direct in DevTools</td>
+						<td>Via shadow root</td>
+					</tr>
+					<tr>
+						<td>Portable buiten app</td>
+						<td>Beperkt</td>
+						<td>Volledig</td>
+					</tr>
+					<tr>
+						<td>Gebruik in deze app</td>
+						<td>Voorkeur (80–90%)</td>
+						<td>Uitzonderingen</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="module" src="js/app.js"></script>
+</body>
+
+</html>

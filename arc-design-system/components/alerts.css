@@ -1,0 +1,79 @@
+/* ============================================================
+   ARC — Alerts
+   ============================================================ */
+
+.alert {
+  padding: var(--s4) var(--s5);
+  border-radius: var(--r-lg);
+  border: 1px solid transparent;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s3);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.alert-icon {
+  flex-shrink: 0;
+  font-size: 1.1em;
+  margin-top: 0.1em;
+}
+
+.alert-title {
+  font-weight: 600;
+  font-size: var(--text-base);
+  margin-bottom: var(--s1);
+}
+
+.alert-body {
+  opacity: 0.85;
+}
+
+/* ── Semantic variants ───────────────────────────────────── */
+.alert-info {
+  color: var(--primary);
+  background: color-mix(in oklch, var(--primary) 10%, var(--bg-raised));
+  border-color: color-mix(in oklch, var(--primary) 28%, transparent);
+}
+
+.alert-success {
+  color: var(--success);
+  background: color-mix(in oklch, var(--success) 10%, var(--bg-raised));
+  border-color: color-mix(in oklch, var(--success) 28%, transparent);
+}
+
+.alert-warning {
+  color: var(--warning);
+  background: color-mix(in oklch, var(--warning) 10%, var(--bg-raised));
+  border-color: color-mix(in oklch, var(--warning) 28%, transparent);
+}
+
+.alert-danger {
+  color: var(--danger);
+  background: color-mix(in oklch, var(--danger) 10%, var(--bg-raised));
+  border-color: color-mix(in oklch, var(--danger) 28%, transparent);
+}
+
+/* ── Dismissible alert ───────────────────────────────────── */
+.alert-dismissible {
+  padding-right: var(--s10);
+  position: relative;
+}
+
+.alert-close {
+  position: absolute;
+  top: var(--s3);
+  right: var(--s4);
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.5;
+  font-size: 1rem;
+  line-height: 1;
+  color: inherit;
+  padding: 0;
+
+  &:hover {
+    opacity: 1;
+  }
+}

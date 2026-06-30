@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Custom CSS — Shadow DOM Web Components</title>
+
+	<style>
+		/* Minimale pagina-stijlen — de components hebben hun eigen CSS in de shadow root */
+		body {
+			font-family: system-ui, -apple-system, sans-serif;
+			padding: 2rem;
+			background: #f5f5f5;
+			color: #212529;
+		}
+
+		h1 {
+			margin-bottom: 0.25rem;
+		}
+
+		.subtitle {
+			color: #6c757d;
+			margin-bottom: 3rem;
+		}
+
+		section {
+			margin-bottom: 3rem;
+		}
+
+		h2 {
+			font-size: 1.1rem;
+			margin-bottom: 1rem;
+			color: #495057;
+		}
+
+		.row {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+			gap: 1rem;
+		}
+
+		.flex {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+			align-items: center;
+		}
+	</style>
+</head>
+
+<body>
+
+	<h1>Custom CSS — Shadow DOM Components</h1>
+	<p class="subtitle">
+		Geen Bootstrap. Elke component heeft eigen ingekapselde CSS in de shadow root.
+		Slots verzorgen content-injectie. Stijlen lekken niet.
+	</p>
+
+	<!-- ─── ui-button ─── -->
+	<section>
+		<h2>ui-button — default slot</h2>
+		<div class="flex">
+			<ui-button variant="primary">Primair</ui-button>
+			<ui-button variant="secondary">Secundair</ui-button>
+			<ui-button variant="success">Opslaan</ui-button>
+			<ui-button variant="danger">Verwijderen</ui-button>
+			<ui-button variant="primary" size="sm">Klein</ui-button>
+			<ui-button variant="primary" size="lg">Groot</ui-button>
+			<ui-button variant="primary" disabled>Uitgeschakeld</ui-button>
+		</div>
+	</section>
+
+	<!-- ─── ui-badge ─── -->
+	<section>
+		<h2>ui-badge — default slot</h2>
+		<div class="flex">
+			<ui-badge variant="success">Actief</ui-badge>
+			<ui-badge variant="danger">Geblokkeerd</ui-badge>
+			<ui-badge variant="warning">In behandeling</ui-badge>
+			<ui-badge variant="info">Nieuw</ui-badge>
+			<ui-badge variant="secondary">Archief</ui-badge>
+			<ui-badge variant="primary">Uitgelicht</ui-badge>
+		</div>
+	</section>
+
+	<!-- ─── ui-card — named slots + default slot ─── -->
+	<section>
+		<h2>ui-card — named slots (header, footer) + default slot (body)</h2>
+		<div class="row">
+
+			<!-- Alle drie slots ingevuld -->
+			<ui-card>
+				<h3 slot="header">Gebruikersprofiel</h3>
+				<p><strong>Naam:</strong> Jan de Vries</p>
+				<p><strong>Rol:</strong> Administrator</p>
+				<div slot="footer">
+					<ui-button variant="primary" size="sm">Bewerk</ui-button>
+				</div>
+			</ui-card>
+
+			<!-- Alleen body (default slot) — header en footer worden verborgen -->
+			<ui-card>
+				<p>Kaart zonder header en footer. Alleen de default slot is gevuld.</p>
+				<p>De header en footer secties worden automatisch verborgen.</p>
+			</ui-card>
+
+			<!-- Header + body, geen footer -->
+			<ui-card>
+				<span slot="header">Status</span>
+				<div>
+					<ui-badge variant="success">Online</ui-badge>
+					<p style="margin-top: 0.5rem; margin-bottom: 0;">Laatste activiteit: vandaag</p>
+				</div>
+			</ui-card>
+
+		</div>
+	</section>
+
+	<!-- ─── Slot-projectie uitleg ─── -->
+	<section>
+		<h2>Let op: slots projecteren, ze kopiëren niet</h2>
+		<p>
+			De onderstaande paragraaf staat in de <em>originele DOM</em>.
+			De <code>ui-card</code> projecteert hem via de default slot — hij wordt niet gekopieerd.
+			Verander <code>dynamicText</code> in de console en de kaart updatet mee.
+		</p>
+		<ui-card>
+			<h3 slot="header">Reactieve projectie</h3>
+			<p id="dynamicText">Dit is de originele DOM-node — niet een kopie.</p>
+		</ui-card>
+	</section>
+
+	<!-- Components -->
+	<script src="ui-button.js"></script>
+	<script src="ui-badge.js"></script>
+	<script src="ui-card.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+/* ============================================================
+   THEME: Colorblind Safe
+   Palette tuned for stronger distinction across common CVD types.
+   Uses luminance contrast + hue pairs that stay distinguishable.
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700;800&family=JetBrains+Mono:wght@500&display=swap");
+
+@layer arc.theme {
+  :root {
+    --cb-blue: oklch(53% 0.18 251);
+    --cb-orange: oklch(76% 0.16 76);
+    --cb-sky: oklch(72% 0.11 225);
+    --cb-green: oklch(64% 0.14 165);
+    --cb-magenta: oklch(66% 0.16 340);
+    --cb-gold: oklch(84% 0.14 96);
+
+    --primary: var(--cb-blue);
+    --secondary: var(--cb-orange);
+    --accent: var(--cb-sky);
+    --success: var(--cb-green);
+    --warning: var(--cb-gold);
+    --danger: var(--cb-magenta);
+
+    --bg: oklch(98% 0.003 255);
+    --bg-raised: oklch(95% 0.006 255);
+    --bg-overlay: oklch(91% 0.01 255);
+    --border: oklch(34% 0.02 255);
+
+    --text: oklch(16% 0.008 255);
+    --text-muted: oklch(30% 0.012 255);
+    --text-faint: oklch(45% 0.01 255);
+
+    --font-display: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+    --font-sans: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", "IBM Plex Mono", monospace;
+
+    --r-sm: 0.22rem;
+    --r: 0.3rem;
+    --r-md: 0.44rem;
+    --r-lg: 0.62rem;
+
+    /* Accessibility-first: no decorative hero photo so status colors and text contrast stay central. */
+    --hero-photo: none;
+    --hero-photo-position: center 42%;
+
+    --btn-primary-text: oklch(98% 0.003 255);
+    --glow-sm: none;
+    --glow: none;
+    --glow-lg: none;
+  }
+
+  [data-theme="dark"] {
+    --bg: oklch(11% 0.008 255);
+    --bg-raised: oklch(16% 0.01 255);
+    --bg-overlay: oklch(21% 0.012 255);
+    --border: oklch(72% 0.01 255);
+    --text: oklch(96% 0.003 255);
+    --text-muted: oklch(88% 0.006 255);
+    --text-faint: oklch(74% 0.008 255);
+  }
+
+  .btn,
+  .badge,
+  .alert {
+    font-weight: 700;
+  }
+
+  .btn-primary {
+    background: linear-gradient(
+        90deg,
+        var(--cb-blue) 0%,
+        oklch(58% 0.2 268) 100%
+      )
+      100% 0 / 180% 100% no-repeat;
+    color: var(--btn-primary-text);
+
+    &:hover {
+      background-position: 0% 0;
+    }
+  }
+
+  .btn-secondary {
+    background: linear-gradient(
+        90deg,
+        var(--cb-orange) 0%,
+        oklch(80% 0.17 88) 100%
+      )
+      100% 0 / 180% 100% no-repeat;
+    color: oklch(16% 0.008 255);
+
+    &:hover {
+      background-position: 0% 0;
+    }
+  }
+}

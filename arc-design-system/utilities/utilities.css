@@ -1,0 +1,410 @@
+/* ============================================================
+  ARC — Utilities
+   ============================================================ */
+
+/* ── Display ─────────────────────────────────────────────── */
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
+}
+.inline {
+  display: inline;
+}
+.hidden {
+  display: none;
+}
+
+/* ── Overflow ────────────────────────────────────────────── */
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-auto {
+  overflow: auto;
+}
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+/* ── Position ────────────────────────────────────────────── */
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.sticky {
+  position: sticky;
+}
+.inset-0 {
+  inset: 0;
+}
+
+/* ── Sizing ──────────────────────────────────────────────── */
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
+.min-h-screen {
+  min-height: 100dvh;
+}
+.max-w-prose {
+  max-width: 65ch;
+}
+
+/* ── Text alignment ──────────────────────────────────────── */
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+/* ── Font size ───────────────────────────────────────────── */
+.text-xs {
+  font-size: var(--text-xs);
+}
+.text-sm {
+  font-size: var(--text-sm);
+}
+.text-base {
+  font-size: var(--text-base);
+}
+.text-lg {
+  font-size: var(--text-lg);
+}
+.text-xl {
+  font-size: var(--text-xl);
+}
+.text-2xl {
+  font-size: var(--text-2xl);
+}
+.text-3xl {
+  font-size: var(--text-3xl);
+}
+.text-4xl {
+  font-size: var(--text-4xl);
+}
+.text-5xl {
+  font-size: var(--text-5xl);
+}
+.text-6xl {
+  font-size: var(--text-6xl);
+}
+.text-7xl {
+  font-size: var(--text-7xl);
+}
+
+/* ── Font weight ─────────────────────────────────────────── */
+.font-light {
+  font-weight: 300;
+}
+.font-normal {
+  font-weight: 400;
+}
+.font-medium {
+  font-weight: 500;
+}
+.font-semibold {
+  font-weight: 600;
+}
+.font-bold {
+  font-weight: 700;
+}
+.font-black {
+  font-weight: 900;
+}
+.font-display {
+  font-family: var(--font-display);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ── Text color ──────────────────────────────────────────── */
+.text-primary {
+  color: var(--primary);
+}
+.text-secondary {
+  color: var(--secondary);
+}
+.text-accent {
+  color: var(--accent);
+}
+.text-success {
+  color: var(--success);
+}
+.text-warning {
+  color: var(--warning);
+}
+.text-danger {
+  color: var(--danger);
+}
+.text-muted {
+  color: var(--text-muted);
+}
+.text-faint {
+  color: var(--text-faint);
+}
+
+/* ── Gradient text ───────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--secondary) 50%,
+    var(--accent) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-subtle {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Background ──────────────────────────────────────────── */
+.bg-base {
+  background: var(--bg);
+}
+.bg-raised {
+  background: var(--bg-raised);
+}
+.bg-overlay {
+  background: var(--bg-overlay);
+}
+.bg-primary {
+  background: var(--primary);
+}
+
+/* ── Border ──────────────────────────────────────────────── */
+.border {
+  border: 1px solid var(--border);
+}
+.border-primary {
+  border-color: var(--primary);
+}
+.border-none {
+  border: none;
+}
+
+/* ── Letter spacing ──────────────────────────────────────── */
+.tracking-tight {
+  letter-spacing: -0.025em;
+}
+.tracking-normal {
+  letter-spacing: 0;
+}
+.tracking-wide {
+  letter-spacing: 0.05em;
+}
+.tracking-wider {
+  letter-spacing: 0.1em;
+}
+.tracking-widest {
+  letter-spacing: 0.2em;
+}
+
+/* ── Line height ─────────────────────────────────────────── */
+.leading-tight {
+  line-height: 1.25;
+}
+.leading-snug {
+  line-height: 1.375;
+}
+.leading-normal {
+  line-height: 1.5;
+}
+.leading-relaxed {
+  line-height: 1.7;
+}
+
+/* ── Border radius ───────────────────────────────────────── */
+.rounded-sm {
+  border-radius: var(--r-sm);
+}
+.rounded {
+  border-radius: var(--r);
+}
+.rounded-md {
+  border-radius: var(--r-md);
+}
+.rounded-lg {
+  border-radius: var(--r-lg);
+}
+.rounded-xl {
+  border-radius: var(--r-xl);
+}
+.rounded-2xl {
+  border-radius: var(--r-2xl);
+}
+.rounded-full {
+  border-radius: var(--r-full);
+}
+
+/* ── Shadow / Glow ───────────────────────────────────────── */
+.shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+.shadow {
+  box-shadow: var(--shadow);
+}
+.shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+.glow {
+  box-shadow: var(--glow);
+}
+.glow-lg {
+  box-shadow: var(--glow-lg);
+}
+
+/* ── Margin ──────────────────────────────────────────────── */
+.m-0 {
+  margin: 0;
+}
+.mx-auto {
+  margin-inline: auto;
+}
+.my-2 {
+  margin-block: var(--s2);
+}
+.my-4 {
+  margin-block: var(--s4);
+}
+.my-6 {
+  margin-block: var(--s6);
+}
+.my-8 {
+  margin-block: var(--s8);
+}
+.mt-1 {
+  margin-top: var(--s1);
+}
+.mt-2 {
+  margin-top: var(--s2);
+}
+.mt-3 {
+  margin-top: var(--s3);
+}
+.mt-4 {
+  margin-top: var(--s4);
+}
+.mt-6 {
+  margin-top: var(--s6);
+}
+.mt-8 {
+  margin-top: var(--s8);
+}
+.mb-1 {
+  margin-bottom: var(--s1);
+}
+.mb-2 {
+  margin-bottom: var(--s2);
+}
+.mb-3 {
+  margin-bottom: var(--s3);
+}
+.mb-4 {
+  margin-bottom: var(--s4);
+}
+.mb-6 {
+  margin-bottom: var(--s6);
+}
+.mb-8 {
+  margin-bottom: var(--s8);
+}
+
+/* ── Padding ─────────────────────────────────────────────── */
+.p-0 {
+  padding: 0;
+}
+.p-2 {
+  padding: var(--s2);
+}
+.p-4 {
+  padding: var(--s4);
+}
+.p-6 {
+  padding: var(--s6);
+}
+.p-8 {
+  padding: var(--s8);
+}
+.px-4 {
+  padding-inline: var(--s4);
+}
+.px-6 {
+  padding-inline: var(--s6);
+}
+.px-8 {
+  padding-inline: var(--s8);
+}
+.py-2 {
+  padding-block: var(--s2);
+}
+.py-4 {
+  padding-block: var(--s4);
+}
+.py-6 {
+  padding-block: var(--s6);
+}
+.py-8 {
+  padding-block: var(--s8);
+}
+
+/* ── Opacity ─────────────────────────────────────────────── */
+.opacity-0 {
+  opacity: 0;
+}
+.opacity-50 {
+  opacity: 0.5;
+}
+.opacity-75 {
+  opacity: 0.75;
+}
+
+/* ── Pointer / select ────────────────────────────────────── */
+.cursor-pointer {
+  cursor: pointer;
+}
+.cursor-default {
+  cursor: default;
+}
+.select-none {
+  user-select: none;
+}
+.pointer-none {
+  pointer-events: none;
+}
+
+/* ── Accessibility ───────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ── Aspect ratio ────────────────────────────────────────── */
+.aspect-square {
+  aspect-ratio: 1;
+}
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}

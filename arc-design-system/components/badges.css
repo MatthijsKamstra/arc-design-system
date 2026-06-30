@@ -1,0 +1,75 @@
+/* ============================================================
+   ARC — Badges
+   ============================================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s1);
+  padding: 0.2em 0.65em;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  line-height: 1;
+  border-radius: var(--r-full);
+  border: 1px solid currentColor;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+/* Outlined tinted variants */
+.badge-primary {
+  color: var(--primary);
+  background: color-mix(in oklch, var(--primary) 14%, transparent);
+}
+.badge-secondary {
+  color: var(--secondary);
+  background: color-mix(in oklch, var(--secondary) 14%, transparent);
+}
+.badge-accent {
+  color: var(--accent);
+  background: color-mix(in oklch, var(--accent) 14%, transparent);
+}
+.badge-success {
+  color: var(--success);
+  background: color-mix(in oklch, var(--success) 14%, transparent);
+}
+.badge-warning {
+  color: var(--warning);
+  background: color-mix(in oklch, var(--warning) 14%, transparent);
+}
+.badge-danger {
+  color: var(--danger);
+  background: color-mix(in oklch, var(--danger) 14%, transparent);
+}
+
+/* Subtle / neutral */
+.badge-ghost {
+  color: var(--text-muted);
+  background: var(--bg-overlay);
+  border-color: var(--border);
+}
+
+/* Solid filled variants */
+.badge-solid-primary {
+  color: oklch(10% 0.01 258);
+  background: var(--primary);
+  border-color: transparent;
+}
+
+.badge-solid-secondary {
+  color: oklch(97% 0.004 258);
+  background: var(--secondary);
+  border-color: transparent;
+}
+
+.badge-solid-danger {
+  color: oklch(97% 0.004 258);
+  background: var(--danger);
+  border-color: transparent;
+}
+
+/* Size modifier */
+.badge-lg {
+  font-size: var(--text-sm);
+  padding: 0.3em 0.8em;
+}

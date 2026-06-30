@@ -1,0 +1,93 @@
+/* ============================================================
+   ARC — Code block
+   A styled container for displaying code with a header bar.
+   ============================================================ */
+
+.code-block {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s3) var(--s5);
+  background: var(--bg-overlay);
+  border-bottom: 1px solid var(--border);
+}
+
+.code-dots {
+  display: flex;
+  gap: var(--s2);
+
+  & span {
+    width: 12px;
+    height: 12px;
+    border-radius: var(--r-full);
+  }
+
+  & span:nth-child(1) {
+    background: oklch(63% 0.23 26);
+  }
+  & span:nth-child(2) {
+    background: oklch(78% 0.19 76);
+  }
+  & span:nth-child(3) {
+    background: oklch(78% 0.21 146);
+  }
+}
+
+.code-lang {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.code-copy {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 0.2em 0.6em;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  cursor: pointer;
+  transition:
+    border-color var(--t-fast),
+    color var(--t-fast);
+
+  &:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+}
+
+/* pre inside code-block resets border/radius */
+.code-block pre {
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: var(--s5) var(--s6);
+}
+
+/* ── Divider ─────────────────────────────────────────────── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  color: var(--text-faint);
+  font-size: var(--text-sm);
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+}

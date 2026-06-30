@@ -1,0 +1,47 @@
+/* ============================================================
+   ARC Design System — Entry Point
+   Layer declaration must precede @import rules.
+   Load a theme after this file:
+     <link rel="stylesheet" href="arc.css" />
+     <link rel="stylesheet" href="themes/theme-cyber.css" />
+   ============================================================ */
+
+@layer arc.reset,
+  arc.tokens,
+  arc.base,
+  arc.layout,
+  arc.components.hero,
+  arc.components.buttons,
+  arc.components.badges,
+  arc.components.cards,
+  arc.components.alerts,
+  arc.components.forms,
+  arc.components.nav,
+  arc.components.progress,
+  arc.components.extras,
+  arc.components.code,
+  arc.utilities,
+  arc.animations,
+  arc.theme;
+
+/* ── Core ─────────────────────────────────────────────────── */
+@import "./core/reset.css" layer(arc.reset);
+@import "./core/tokens.css" layer(arc.tokens);
+@import "./core/base.css" layer(arc.base);
+@import "./core/grid.css" layer(arc.layout);
+@import "./core/animations.css" layer(arc.animations);
+
+/* ── Components ───────────────────────────────────────────── */
+@import "./components/hero.css" layer(arc.components.hero);
+@import "./components/buttons.css" layer(arc.components.buttons);
+@import "./components/badges.css" layer(arc.components.badges);
+@import "./components/cards.css" layer(arc.components.cards);
+@import "./components/alerts.css" layer(arc.components.alerts);
+@import "./components/forms.css" layer(arc.components.forms);
+@import "./components/nav.css" layer(arc.components.nav);
+@import "./components/progress.css" layer(arc.components.progress);
+@import "./components/extras.css" layer(arc.components.extras);
+@import "./components/code-block.css" layer(arc.components.code);
+
+/* ── Utilities ────────────────────────────────────────────── */
+@import "./utilities/utilities.css" layer(arc.utilities);

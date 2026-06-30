@@ -1,0 +1,202 @@
+/* ============================================================
+   THEME: Cyber
+   Space / cyberpunk aesthetic.
+   Palette: cyan × purple × pink
+   Display font: Orbitron
+   Body font: Space Grotesk
+   Signature: sliding gradient buttons, neon glow, scanlines
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+@layer arc.theme {
+  /* ── Color palette ─────────────────────────────────────── */
+  :root {
+    --cyan: oklch(82% 0.17 194);
+    --purple: oklch(66% 0.22 292);
+    --pink: oklch(70% 0.25 354);
+    --green: oklch(78% 0.21 146);
+    --amber: oklch(80% 0.19 76);
+    --red: oklch(63% 0.23 26);
+
+    --primary: var(--cyan);
+    --secondary: var(--purple);
+    --accent: var(--pink);
+    --success: var(--green);
+    --warning: var(--amber);
+    --danger: var(--red);
+
+    --font-display: "Orbitron", system-ui, sans-serif;
+    --font-sans: "Space Grotesk", system-ui, sans-serif;
+
+    --hero-photo: url("https://picsum.photos/seed/arc-cyber-neon/2400/1400");
+    --hero-photo-position: center 52%;
+
+    --btn-primary-text: oklch(8% 0.013 258);
+
+    /* Glow enabled */
+    --glow-sm: 0 0 8px color-mix(in oklch, var(--primary) 60%, transparent);
+    --glow:
+      0 0 16px color-mix(in oklch, var(--primary) 50%, transparent),
+      0 0 32px color-mix(in oklch, var(--primary) 20%, transparent);
+    --glow-lg:
+      0 0 24px color-mix(in oklch, var(--primary) 60%, transparent),
+      0 0 48px color-mix(in oklch, var(--primary) 30%, transparent),
+      0 0 80px color-mix(in oklch, var(--primary) 10%, transparent);
+  }
+
+  /* ── Sliding gradient buttons ──────────────────────────── */
+  .btn-primary {
+    background: linear-gradient(
+        90deg,
+        var(--purple) 0%,
+        var(--cyan) 45%,
+        var(--green) 100%
+      )
+      100% 0 / 220% 100% no-repeat;
+    color: var(--btn-primary-text);
+    transition:
+      background-position var(--t),
+      box-shadow var(--t),
+      transform var(--t-fast);
+
+    &:hover {
+      background-position: 0% 0;
+      box-shadow: var(--glow);
+    }
+  }
+
+  .btn-secondary {
+    background: linear-gradient(
+        90deg,
+        var(--pink) 0%,
+        var(--purple) 45%,
+        var(--cyan) 100%
+      )
+      100% 0 / 220% 100% no-repeat;
+    color: oklch(95% 0.004 258);
+    transition:
+      background-position var(--t),
+      box-shadow var(--t),
+      transform var(--t-fast);
+
+    &:hover {
+      background-position: 0% 0;
+      box-shadow:
+        0 0 16px color-mix(in oklch, var(--purple) 50%, transparent),
+        0 0 32px color-mix(in oklch, var(--purple) 20%, transparent);
+    }
+  }
+
+  .btn-accent {
+    background: linear-gradient(
+        90deg,
+        var(--cyan) 0%,
+        var(--pink) 50%,
+        var(--amber) 100%
+      )
+      100% 0 / 220% 100% no-repeat;
+    color: var(--btn-primary-text);
+    transition:
+      background-position var(--t),
+      box-shadow var(--t),
+      transform var(--t-fast);
+
+    &:hover {
+      background-position: 0% 0;
+      box-shadow:
+        0 0 16px color-mix(in oklch, var(--pink) 50%, transparent),
+        0 0 32px color-mix(in oklch, var(--pink) 20%, transparent);
+    }
+  }
+
+  /* ── Card glow — neon border ───────────────────────────── */
+  .card-glow {
+    border-color: color-mix(in oklch, var(--primary) 25%, var(--border));
+    box-shadow:
+      0 0 0 1px color-mix(in oklch, var(--primary) 12%, transparent),
+      0 0 24px color-mix(in oklch, var(--primary) 6%, transparent);
+
+    &:hover {
+      border-color: color-mix(in oklch, var(--primary) 55%, var(--border));
+      box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--primary) 28%, transparent),
+        var(--glow);
+    }
+  }
+
+  /* ── Gradient text with aurora animation ───────────────── */
+  .text-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--cyan) 0%,
+      var(--purple) 50%,
+      var(--pink) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-aurora {
+    background: linear-gradient(
+      135deg,
+      var(--cyan) 0%,
+      var(--green) 45%,
+      var(--cyan) 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: aurora 4s linear infinite;
+  }
+
+  /* ── Scanlines overlay ─────────────────────────────────── */
+  .scanlines {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        oklch(0% 0 0 / 0.025) 3px,
+        oklch(0% 0 0 / 0.025) 4px
+      );
+      pointer-events: none;
+      border-radius: inherit;
+    }
+  }
+
+  /* ── Glitch text ───────────────────────────────────────── */
+  .text-glitch {
+    position: relative;
+
+    &::before,
+    &::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    &::before {
+      color: var(--cyan);
+      animation: glitch-1 4s infinite;
+      clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+      opacity: 0;
+    }
+
+    &::after {
+      color: var(--pink);
+      animation: glitch-2 4s infinite;
+      clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+      opacity: 0;
+    }
+  }
+}

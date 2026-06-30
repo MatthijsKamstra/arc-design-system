@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Gebruikers — WebComponents App</title>
+	<link rel="stylesheet" href="css/app.css" />
+</head>
+
+<body>
+
+	<ui-nav current="users.html"></ui-nav>
+
+	<div class="container">
+		<div class="d-flex align-items-center justify-content-between mb-4">
+			<div>
+				<h1 class="mb-1">Gebruikers</h1>
+				<p class="text-muted mb-0">Beheer alle gebruikers van de applicatie</p>
+			</div>
+			<button class="btn btn-primary">Gebruiker toevoegen</button>
+		</div>
+
+		<div class="card">
+			<div class="table-responsive">
+				<table class="table table-hover mb-0">
+					<thead class="table-light">
+						<tr>
+							<th>Naam</th>
+							<th>E-mail</th>
+							<th>Rol</th>
+							<th>Status</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Jan de Vries</td>
+							<td>jan@voorbeeld.nl</td>
+							<td>Administrator</td>
+							<td><span class="badge bg-success">Actief</span></td>
+							<td><a href="#" class="btn btn-sm btn-outline-secondary">Bewerk</a></td>
+						</tr>
+						<tr>
+							<td>Sara Jansen</td>
+							<td>sara@voorbeeld.nl</td>
+							<td>Redacteur</td>
+							<td><span class="badge bg-success">Actief</span></td>
+							<td><a href="#" class="btn btn-sm btn-outline-secondary">Bewerk</a></td>
+						</tr>
+						<tr>
+							<td>Pieter Smit</td>
+							<td>pieter@voorbeeld.nl</td>
+							<td>Lezer</td>
+							<td><span class="badge bg-secondary">Inactief</span></td>
+							<td><a href="#" class="btn btn-sm btn-outline-secondary">Bewerk</a></td>
+						</tr>
+						<tr>
+							<td>Lotte Bakker</td>
+							<td>lotte@voorbeeld.nl</td>
+							<td>Redacteur</td>
+							<td><span class="badge bg-warning text-dark">In afwachting</span></td>
+							<td><a href="#" class="btn btn-sm btn-outline-secondary">Bewerk</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="module" src="js/app.js"></script>
+</body>
+
+</html>

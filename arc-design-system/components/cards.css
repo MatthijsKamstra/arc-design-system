@@ -1,0 +1,66 @@
+/* ============================================================
+   ARC — Cards
+   ============================================================ */
+
+.card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: var(--s6);
+  transition:
+    border-color var(--t),
+    box-shadow var(--t),
+    transform var(--t);
+}
+
+.card-header {
+  margin-bottom: var(--s4);
+  padding-bottom: var(--s4);
+  border-bottom: 1px solid var(--border);
+}
+
+.card-footer {
+  margin-top: var(--s4);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--border);
+}
+
+.card-title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin-bottom: var(--s2);
+  line-height: 1.3;
+}
+
+.card-subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* ── Interactive variant ─────────────────────────────────── */
+.card-hover {
+  cursor: pointer;
+
+  &:hover {
+    border-color: color-mix(in oklch, var(--primary) 50%, var(--border));
+    box-shadow: var(--shadow), var(--glow-sm);
+    transform: translateY(-3px);
+  }
+}
+
+/* ── Accent-border variant (theme adds actual glow) ──────── */
+.card-glow {
+  border-color: color-mix(in oklch, var(--primary) 25%, var(--border));
+
+  &:hover {
+    border-color: color-mix(in oklch, var(--primary) 55%, var(--border));
+    box-shadow: var(--shadow), var(--glow);
+    transform: translateY(-2px);
+  }
+}
+
+/* ── Flat / borderless ───────────────────────────────────── */
+.card-flat {
+  background: var(--bg-overlay);
+  border-color: transparent;
+}

@@ -1,0 +1,90 @@
+/* ============================================================
+   THEME: High Contrast Field
+   Outdoor-first contrast for bright daylight and touch devices.
+   Strong edges, clear hierarchy, zero subtle tones.
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap");
+
+@layer arc.theme {
+  :root {
+    --ink: oklch(14% 0.01 255);
+    --paper: oklch(99% 0.002 95);
+    --signal-blue: oklch(46% 0.21 255);
+    --signal-amber: oklch(84% 0.18 86);
+    --signal-red: oklch(56% 0.23 28);
+    --signal-green: oklch(58% 0.19 145);
+
+    --primary: var(--signal-blue);
+    --secondary: oklch(44% 0.2 275);
+    --accent: var(--signal-amber);
+    --success: var(--signal-green);
+    --warning: oklch(80% 0.2 76);
+    --danger: var(--signal-red);
+
+    --bg: var(--paper);
+    --bg-raised: oklch(97% 0.004 95);
+    --bg-overlay: oklch(93% 0.008 95);
+    --border: oklch(26% 0.016 255);
+
+    --text: var(--ink);
+    --text-muted: oklch(28% 0.012 255);
+    --text-faint: oklch(40% 0.01 255);
+
+    --font-display: "Archivo", system-ui, sans-serif;
+    --font-sans: "Archivo", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", "JetBrains Mono", monospace;
+
+    --r-sm: 0.2rem;
+    --r: 0.24rem;
+    --r-md: 0.3rem;
+    --r-lg: 0.38rem;
+    --r-xl: 0.5rem;
+    --r-2xl: 0.75rem;
+
+    /* Outdoor readability first: no hero photo so contrast and edge definition stay dominant. */
+    --hero-photo: none;
+    --hero-photo-position: center 40%;
+
+    --btn-primary-text: oklch(98% 0.002 95);
+    --glow-sm: none;
+    --glow: none;
+    --glow-lg: none;
+  }
+
+  [data-theme="dark"] {
+    --bg: oklch(9% 0.006 255);
+    --bg-raised: oklch(14% 0.008 255);
+    --bg-overlay: oklch(20% 0.01 255);
+    --border: oklch(80% 0.01 95);
+    --text: oklch(98% 0.003 95);
+    --text-muted: oklch(92% 0.005 95);
+    --text-faint: oklch(82% 0.006 95);
+  }
+
+  .btn {
+    border-width: 2px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: var(--btn-primary-text);
+  }
+
+  .btn-secondary {
+    background: var(--accent);
+    color: oklch(14% 0.01 255);
+    border-color: color-mix(in oklch, var(--ink) 55%, var(--accent));
+  }
+
+  .card,
+  .demo-panel,
+  .alert,
+  input,
+  select,
+  textarea {
+    border-width: 2px;
+  }
+}

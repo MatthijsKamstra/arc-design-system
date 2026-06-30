@@ -1,0 +1,102 @@
+/* ============================================================
+  ARC — Base element styles
+   ============================================================ */
+
+html {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--primary);
+  text-decoration-color: color-mix(in oklch, var(--primary) 40%, transparent);
+  transition:
+    color var(--t-fast),
+    text-decoration-color var(--t-fast);
+
+  &:hover {
+    color: color-mix(in oklch, var(--primary) 80%, white);
+    text-decoration-color: var(--primary);
+  }
+}
+
+h1 {
+  font-size: var(--text-6xl);
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+h2 {
+  font-size: var(--text-4xl);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+h3 {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+}
+h4 {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+}
+h5 {
+  font-size: var(--text-xl);
+  font-weight: 600;
+}
+h6 {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+p {
+  max-width: 65ch;
+  line-height: 1.7;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--bg-overlay);
+  color: var(--primary);
+  padding: 0.15em 0.4em;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+}
+
+pre {
+  font-family: var(--font-mono);
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s6);
+  overflow-x: auto;
+
+  & code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: var(--text-sm);
+    color: var(--text);
+  }
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin-block: var(--s8);
+}
+
+::selection {
+  background: color-mix(in oklch, var(--primary) 30%, transparent);
+  color: var(--text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}

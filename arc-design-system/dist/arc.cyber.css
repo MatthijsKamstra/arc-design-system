@@ -1,0 +1,2558 @@
+/* ============================================================
+   ARC Design System — Built 2026-06-30
+   Theme: themes/theme-cyber.css
+   ============================================================ */
+
+
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+@layer
+  arc.reset,
+  arc.tokens,
+  arc.base,
+  arc.layout,
+	arc.components.hero,
+  arc.components.buttons,
+  arc.components.badges,
+  arc.components.cards,
+  arc.components.alerts,
+  arc.components.forms,
+  arc.components.nav,
+  arc.components.progress,
+	arc.components.extras,
+  arc.components.code,
+  arc.utilities,
+  arc.animations,
+  arc.theme;
+
+
+
+/* ── core/reset.css ──────────────────────────────────────── */
+/* ============================================================
+  ARC — Reset
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  hanging-punctuation: first last;
+}
+
+body {
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+  line-height: 1.25;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+a {
+  text-decoration-skip-ink: auto;
+}
+
+
+/* ── core/tokens.css ──────────────────────────────────────── */
+/* ============================================================
+  ARC — Design Tokens
+   Structural tokens only. Colors are intentionally neutral.
+   Import a theme file to apply a specific visual identity.
+   ============================================================ */
+
+/* ── @property for animatable custom properties ─────────── */
+@property --btn-bg-pos {
+  syntax: "<percentage> <percentage>";
+  initial-value: 0% 0%;
+  inherits: false;
+}
+
+/* ── Base tokens ─────────────────────────────────────────── */
+:root {
+  color-scheme: dark;
+
+  /* Semantic color aliases — overridden by theme files */
+  --primary: oklch(56% 0.2 258);
+  --secondary: oklch(52% 0.18 290);
+  --accent: oklch(68% 0.18 52);
+  --success: oklch(72% 0.18 142);
+  --warning: oklch(78% 0.18 70);
+  --danger: oklch(62% 0.22 27);
+
+  /* Surfaces */
+  --bg: oklch(10% 0.01 258);
+  --bg-raised: oklch(15% 0.013 258);
+  --bg-overlay: oklch(20% 0.016 258);
+  --border: oklch(28% 0.018 258);
+
+  /* Text */
+  --text: oklch(94% 0.004 258);
+  --text-muted: oklch(58% 0.01 258);
+  --text-faint: oklch(38% 0.007 258);
+
+  /* Typography */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  --font-display: var(--font-sans);
+
+  /* Fluid type scale */
+  --text-xs: clamp(0.625rem, 1.5vw, 0.75rem);
+  --text-sm: clamp(0.75rem, 2vw, 0.875rem);
+  --text-base: clamp(0.875rem, 2.5vw, 1rem);
+  --text-lg: clamp(1rem, 3vw, 1.125rem);
+  --text-xl: clamp(1.125rem, 3.5vw, 1.25rem);
+  --text-2xl: clamp(1.25rem, 4vw, 1.5rem);
+  --text-3xl: clamp(1.5rem, 5vw, 1.875rem);
+  --text-4xl: clamp(1.875rem, 6vw, 2.25rem);
+  --text-5xl: clamp(2.25rem, 7vw, 3rem);
+  --text-6xl: clamp(3rem, 9vw, 3.75rem);
+  --text-7xl: clamp(3.75rem, 11vw, 4.5rem);
+
+  /* Spacing — 4px base */
+  --s1: 0.25rem;
+  --s2: 0.5rem;
+  --s3: 0.75rem;
+  --s4: 1rem;
+  --s5: 1.25rem;
+  --s6: 1.5rem;
+  --s8: 2rem;
+  --s10: 2.5rem;
+  --s12: 3rem;
+  --s16: 4rem;
+  --s20: 5rem;
+  --s24: 6rem;
+  --s32: 8rem;
+
+  /* Border radius */
+  --r-sm: 0.25rem;
+  --r: 0.375rem;
+  --r-md: 0.5rem;
+  --r-lg: 0.75rem;
+  --r-xl: 1rem;
+  --r-2xl: 1.5rem;
+  --r-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px oklch(0% 0 0 / 0.5);
+  --shadow: 0 4px 12px oklch(0% 0 0 / 0.6);
+  --shadow-lg: 0 8px 32px oklch(0% 0 0 / 0.7);
+
+  /* Glow — none by default, enabled per theme */
+  --glow-sm: none;
+  --glow: none;
+  --glow-lg: none;
+
+  /* Transitions */
+  --t-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --t: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --t-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --t-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Z-index */
+  --z-base: 0;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-modal: 200;
+  --z-toast: 300;
+
+  /* Button internals — theme-overrideable */
+  --btn-primary-text: oklch(98% 0.004 258);
+  --btn-gradient-image: none;
+  --btn-gradient-size: auto;
+  --btn-gradient-pos: 0% 0%;
+  --btn-gradient-pos-end: 0% 0%;
+
+  /* Hero media — theme overrideable */
+  --hero-photo: url("https://picsum.photos/seed/arc-default-landscape/2400/1400");
+  --hero-photo-position: center 34%;
+}
+
+/* ── Light mode ──────────────────────────────────────────── */
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: oklch(97% 0.004 258);
+  --bg-raised: oklch(93% 0.006 258);
+  --bg-overlay: oklch(87% 0.009 258);
+  --border: oklch(78% 0.012 258);
+  --text: oklch(14% 0.009 258);
+  --text-muted: oklch(44% 0.014 258);
+  --text-faint: oklch(64% 0.009 258);
+  --shadow-sm: 0 1px 3px oklch(0% 0 0 / 0.08);
+  --shadow: 0 4px 12px oklch(0% 0 0 / 0.1);
+  --shadow-lg: 0 8px 32px oklch(0% 0 0 / 0.14);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg: oklch(97% 0.004 258);
+    --bg-raised: oklch(93% 0.006 258);
+    --bg-overlay: oklch(87% 0.009 258);
+    --border: oklch(78% 0.012 258);
+    --text: oklch(14% 0.009 258);
+    --text-muted: oklch(44% 0.014 258);
+    --text-faint: oklch(64% 0.009 258);
+    --shadow-sm: 0 1px 3px oklch(0% 0 0 / 0.08);
+    --shadow: 0 4px 12px oklch(0% 0 0 / 0.1);
+    --shadow-lg: 0 8px 32px oklch(0% 0 0 / 0.14);
+  }
+}
+
+
+/* ── core/base.css ──────────────────────────────────────── */
+/* ============================================================
+  ARC — Base element styles
+   ============================================================ */
+
+html {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--primary);
+  text-decoration-color: color-mix(in oklch, var(--primary) 40%, transparent);
+  transition:
+    color var(--t-fast),
+    text-decoration-color var(--t-fast);
+
+  &:hover {
+    color: color-mix(in oklch, var(--primary) 80%, white);
+    text-decoration-color: var(--primary);
+  }
+}
+
+h1 {
+  font-size: var(--text-6xl);
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+h2 {
+  font-size: var(--text-4xl);
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+h3 {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+}
+h4 {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+}
+h5 {
+  font-size: var(--text-xl);
+  font-weight: 600;
+}
+h6 {
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+p {
+  max-width: 65ch;
+  line-height: 1.7;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--bg-overlay);
+  color: var(--primary);
+  padding: 0.15em 0.4em;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+}
+
+pre {
+  font-family: var(--font-mono);
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s6);
+  overflow-x: auto;
+
+  & code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: var(--text-sm);
+    color: var(--text);
+  }
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin-block: var(--s8);
+}
+
+::selection {
+  background: color-mix(in oklch, var(--primary) 30%, transparent);
+  color: var(--text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+
+/* ── core/grid.css ──────────────────────────────────────── */
+/* ============================================================
+  ARC — Layout & Grid
+   ============================================================ */
+
+/* ── Containers ──────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--s6);
+}
+
+.container-sm {
+  max-width: 640px;
+  margin-inline: auto;
+  padding-inline: var(--s6);
+}
+.container-md {
+  max-width: 768px;
+  margin-inline: auto;
+  padding-inline: var(--s6);
+}
+.container-lg {
+  max-width: 1024px;
+  margin-inline: auto;
+  padding-inline: var(--s6);
+}
+.container-xl {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: var(--s6);
+}
+
+.section {
+  padding-block: var(--s24);
+}
+
+/* ── Grid ─────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  gap: var(--s6);
+}
+.grid-1 {
+  display: grid;
+  gap: var(--s6);
+  grid-template-columns: repeat(1, 1fr);
+}
+.grid-2 {
+  display: grid;
+  gap: var(--s6);
+  grid-template-columns: repeat(2, 1fr);
+}
+.grid-3 {
+  display: grid;
+  gap: var(--s6);
+  grid-template-columns: repeat(3, 1fr);
+}
+.grid-4 {
+  display: grid;
+  gap: var(--s6);
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Auto-fit responsive grids */
+.grid-auto-sm {
+  display: grid;
+  gap: var(--s6);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+.grid-auto-md {
+  display: grid;
+  gap: var(--s6);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.grid-auto-lg {
+  display: grid;
+  gap: var(--s6);
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+}
+
+.col-span-2 {
+  grid-column: span 2;
+}
+.col-span-3 {
+  grid-column: span 3;
+}
+.col-full {
+  grid-column: 1 / -1;
+}
+
+/* ── Flexbox ──────────────────────────────────────────────── */
+.flex {
+  display: flex;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-none {
+  flex: none;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+.items-center {
+  align-items: center;
+}
+.items-end {
+  align-items: flex-end;
+}
+.items-stretch {
+  align-items: stretch;
+}
+.items-baseline {
+  align-items: baseline;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-between {
+  justify-content: space-between;
+}
+
+/* ── Gap ──────────────────────────────────────────────────── */
+.gap-1 {
+  gap: var(--s1);
+}
+.gap-2 {
+  gap: var(--s2);
+}
+.gap-3 {
+  gap: var(--s3);
+}
+.gap-4 {
+  gap: var(--s4);
+}
+.gap-6 {
+  gap: var(--s6);
+}
+.gap-8 {
+  gap: var(--s8);
+}
+.gap-12 {
+  gap: var(--s12);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+  .container {
+    padding-inline: var(--s4);
+  }
+  .hide-mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 769px) {
+  .hide-desktop {
+    display: none;
+  }
+}
+
+
+/* ── core/animations.css ──────────────────────────────────────── */
+/* ============================================================
+  ARC — Keyframes & Animation utilities
+   ============================================================ */
+
+/* ── Keyframes ───────────────────────────────────────────── */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.7;
+    box-shadow: var(--glow-sm);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: var(--glow-lg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes aurora {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes nebula-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes star-twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes glitch-1 {
+  0%,
+  90%,
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  91% {
+    opacity: 0.8;
+    transform: translateX(-3px);
+  }
+  93% {
+    opacity: 0.8;
+    transform: translateX(3px);
+  }
+  95% {
+    opacity: 0;
+  }
+}
+
+@keyframes glitch-2 {
+  0%,
+  92%,
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  93% {
+    opacity: 0.6;
+    transform: translateX(3px);
+  }
+  95% {
+    opacity: 0.6;
+    transform: translateX(-3px);
+  }
+  97% {
+    opacity: 0;
+  }
+}
+
+/* ── Animation utility classes ───────────────────────────── */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+.animate-fade-up {
+  animation: fade-up 0.6s ease forwards;
+}
+.animate-fade-in {
+  animation: fade-in 0.4s ease forwards;
+}
+.animate-aurora {
+  animation: aurora 6s ease infinite;
+}
+
+/* ── Reduced motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ── components/hero.css ──────────────────────────────────────── */
+/* ============================================================
+   ARC — Hero
+   Full-width hero with theme-driven background photo variables.
+   Variables expected:
+   --hero-photo
+   --hero-photo-position
+   ============================================================ */
+
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      to bottom,
+      color-mix(in oklch, var(--bg) 35%, transparent) 0%,
+      color-mix(in oklch, var(--bg) 72%, transparent) 45%,
+      color-mix(in oklch, var(--bg) 90%, transparent) 100%
+    ),
+    var(--hero-photo);
+  background-size: cover;
+  background-position: var(--hero-photo-position);
+  background-repeat: no-repeat;
+  opacity: 0.92;
+  z-index: 0;
+  transition:
+    background-image var(--t),
+    filter var(--t),
+    transform var(--t);
+  transform: scale(1.02);
+  filter: saturate(1.05) contrast(1.02);
+  pointer-events: none;
+}
+
+.hero-nebula {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-nebula::before {
+  content: "";
+  position: absolute;
+  width: 80vw;
+  height: 80vh;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in oklch, var(--secondary) 12%, transparent) 0%,
+    color-mix(in oklch, var(--primary) 6%, transparent) 40%,
+    transparent 70%
+  );
+  animation: nebula-pulse 8s ease-in-out infinite;
+}
+
+.hero-nebula::after {
+  content: "";
+  position: absolute;
+  width: 60vw;
+  height: 60vh;
+  bottom: -10%;
+  right: -10%;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in oklch, var(--accent) 10%, transparent) 0%,
+    color-mix(in oklch, var(--secondary) 5%, transparent) 40%,
+    transparent 70%
+  );
+  animation: nebula-pulse 6s ease-in-out infinite reverse;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      color-mix(in oklch, var(--primary) 4%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in oklch, var(--primary) 4%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 60px 60px;
+  mask-image: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    black 30%,
+    transparent 80%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    black 30%,
+    transparent 80%
+  );
+  transition: background-image 0.4s;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding-block: var(--s32);
+  max-width: 62ch;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--primary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: var(--s6);
+}
+
+.hero-eyebrow::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--primary);
+  box-shadow: var(--glow-sm);
+}
+
+.hero-title {
+  font-size: clamp(4rem, 14vw, 8rem);
+  font-family: var(--font-display);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--s6);
+}
+
+.hero-sub {
+  font-size: var(--text-xl);
+  color: var(--text-muted);
+  margin-bottom: var(--s10);
+  max-width: 52ch;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s4);
+  margin-bottom: var(--s10);
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+
+#starfield,
+.hero-nebula {
+  display: none;
+}
+
+[data-active-theme="cyber"] #starfield,
+[data-active-theme="cyber"] .hero-nebula {
+  display: block;
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: star-twinkle var(--duration, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(3rem, 16vw, 6rem);
+  }
+}
+
+
+/* ── components/buttons.css ──────────────────────────────────────── */
+/* ============================================================
+   ARC — Buttons
+   Solid by default. Themes add gradients, glows, or other
+   visual treatments via @layer arc.theme.
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s2);
+  padding: var(--s3) var(--s6);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition:
+    background var(--t),
+    background-position var(--t),
+    box-shadow var(--t),
+    border-color var(--t),
+    color var(--t),
+    transform var(--t-fast);
+
+  &:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+/* ── Filled variants ─────────────────────────────────────── */
+.btn-primary {
+  background: var(--primary);
+  color: var(--btn-primary-text);
+  border-color: transparent;
+
+  &:hover {
+    background: color-mix(in oklch, var(--primary) 82%, white);
+    box-shadow: var(--glow);
+  }
+}
+
+.btn-secondary {
+  background: var(--secondary);
+  color: oklch(95% 0.004 258);
+  border-color: transparent;
+
+  &:hover {
+    background: color-mix(in oklch, var(--secondary) 82%, white);
+    box-shadow: var(--glow);
+  }
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: oklch(10% 0.01 258);
+  border-color: transparent;
+
+  &:hover {
+    background: color-mix(in oklch, var(--accent) 82%, white);
+    box-shadow: var(--glow);
+  }
+}
+
+.btn-success {
+  background: var(--success);
+  color: oklch(10% 0.01 258);
+  border-color: transparent;
+
+  &:hover {
+    background: color-mix(in oklch, var(--success) 82%, white);
+  }
+}
+
+.btn-warning {
+  background: var(--warning);
+  color: oklch(10% 0.01 258);
+  border-color: transparent;
+
+  &:hover {
+    background: color-mix(in oklch, var(--warning) 82%, white);
+  }
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: oklch(97% 0.004 258);
+  border-color: transparent;
+
+  &:hover {
+    background: color-mix(in oklch, var(--danger) 82%, white);
+  }
+}
+
+/* ── Outline variants ────────────────────────────────────── */
+.btn-outline {
+  background: transparent;
+  border-color: var(--primary);
+  color: var(--primary);
+
+  &:hover {
+    background: color-mix(in oklch, var(--primary) 10%, transparent);
+    box-shadow: var(--glow-sm);
+  }
+}
+
+.btn-outline-secondary {
+  background: transparent;
+  border-color: var(--secondary);
+  color: var(--secondary);
+
+  &:hover {
+    background: color-mix(in oklch, var(--secondary) 10%, transparent);
+  }
+}
+
+.btn-outline-accent {
+  background: transparent;
+  border-color: var(--accent);
+  color: var(--accent);
+
+  &:hover {
+    background: color-mix(in oklch, var(--accent) 10%, transparent);
+  }
+}
+
+.btn-outline-danger {
+  background: transparent;
+  border-color: var(--danger);
+  color: var(--danger);
+
+  &:hover {
+    background: color-mix(in oklch, var(--danger) 10%, transparent);
+  }
+}
+
+/* ── Ghost variant ───────────────────────────────────────── */
+.btn-ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text-muted);
+
+  &:hover {
+    background: var(--bg-overlay);
+    border-color: var(--text-faint);
+    color: var(--text);
+  }
+}
+
+/* ── Link variant ────────────────────────────────────────── */
+.btn-link {
+  background: transparent;
+  border-color: transparent;
+  color: var(--primary);
+  padding-inline: var(--s2);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* ── Sizes ───────────────────────────────────────────────── */
+.btn-xs {
+  padding: var(--s1) var(--s3);
+  font-size: var(--text-xs);
+  border-radius: var(--r);
+}
+.btn-sm {
+  padding: var(--s2) var(--s4);
+  font-size: var(--text-xs);
+  border-radius: var(--r);
+}
+.btn-lg {
+  padding: var(--s4) var(--s8);
+  font-size: var(--text-base);
+  border-radius: var(--r-lg);
+}
+.btn-xl {
+  padding: var(--s5) var(--s10);
+  font-size: var(--text-lg);
+  border-radius: var(--r-xl);
+}
+.btn-full {
+  width: 100%;
+}
+.btn-icon {
+  padding: var(--s3);
+  aspect-ratio: 1;
+}
+
+
+/* ── components/badges.css ──────────────────────────────────────── */
+/* ============================================================
+   ARC — Badges
+   ============================================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s1);
+  padding: 0.2em 0.65em;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  line-height: 1;
+  border-radius: var(--r-full);
+  border: 1px solid currentColor;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+/* Outlined tinted variants */
+.badge-primary {
+  color: var(--primary);
+  background: color-mix(in oklch, var(--primary) 14%, transparent);
+}
+.badge-secondary {
+  color: var(--secondary);
+  background: color-mix(in oklch, var(--secondary) 14%, transparent);
+}
+.badge-accent {
+  color: var(--accent);
+  background: color-mix(in oklch, var(--accent) 14%, transparent);
+}
+.badge-success {
+  color: var(--success);
+  background: color-mix(in oklch, var(--success) 14%, transparent);
+}
+.badge-warning {
+  color: var(--warning);
+  background: color-mix(in oklch, var(--warning) 14%, transparent);
+}
+.badge-danger {
+  color: var(--danger);
+  background: color-mix(in oklch, var(--danger) 14%, transparent);
+}
+
+/* Subtle / neutral */
+.badge-ghost {
+  color: var(--text-muted);
+  background: var(--bg-overlay);
+  border-color: var(--border);
+}
+
+/* Solid filled variants */
+.badge-solid-primary {
+  color: oklch(10% 0.01 258);
+  background: var(--primary);
+  border-color: transparent;
+}
+
+.badge-solid-secondary {
+  color: oklch(97% 0.004 258);
+  background: var(--secondary);
+  border-color: transparent;
+}
+
+.badge-solid-danger {
+  color: oklch(97% 0.004 258);
+  background: var(--danger);
+  border-color: transparent;
+}
+
+/* Size modifier */
+.badge-lg {
+  font-size: var(--text-sm);
+  padding: 0.3em 0.8em;
+}
+
+
+/* ── components/cards.css ──────────────────────────────────────── */
+/* ============================================================
+   ARC — Cards
+   ============================================================ */
+
+.card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: var(--s6);
+  transition:
+    border-color var(--t),
+    box-shadow var(--t),
+    transform var(--t);
+}
+
+.card-header {
+  margin-bottom: var(--s4);
+  padding-bottom: var(--s4);
+  border-bottom: 1px solid var(--border);
+}
+
+.card-footer {
+  margin-top: var(--s4);
+  padding-top: var(--s4);
+  border-top: 1px solid var(--border);
+}
+
+.card-title {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin-bottom: var(--s2);
+  line-height: 1.3;
+}
+
+.card-subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* ── Interactive variant ─────────────────────────────────── */
+.card-hover {
+  cursor: pointer;
+
+  &:hover {
+    border-color: color-mix(in oklch, var(--primary) 50%, var(--border));
+    box-shadow: var(--shadow), var(--glow-sm);
+    transform: translateY(-3px);
+  }
+}
+
+/* ── Accent-border variant (theme adds actual glow) ──────── */
+.card-glow {
+  border-color: color-mix(in oklch, var(--primary) 25%, var(--border));
+
+  &:hover {
+    border-color: color-mix(in oklch, var(--primary) 55%, var(--border));
+    box-shadow: var(--shadow), var(--glow);
+    transform: translateY(-2px);
+  }
+}
+
+/* ── Flat / borderless ───────────────────────────────────── */
+.card-flat {
+  background: var(--bg-overlay);
+  border-color: transparent;
+}
+
+
+/* ── components/alerts.css ──────────────────────────────────────── */
+/* ============================================================
+   ARC — Alerts
+   ============================================================ */
+
+.alert {
+  padding: var(--s4) var(--s5);
+  border-radius: var(--r-lg);
+  border: 1px solid transparent;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s3);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+.alert-icon {
+  flex-shrink: 0;
+  font-size: 1.1em;
+  margin-top: 0.1em;
+}
+
+.alert-title {
+  font-weight: 600;
+  font-size: var(--text-base);
+  margin-bottom: var(--s1);
+}
+
+.alert-body {
+  opacity: 0.85;
+}
+
+/* ── Semantic variants ───────────────────────────────────── */
+.alert-info {
+  color: var(--primary);
+  background: color-mix(in oklch, var(--primary) 10%, var(--bg-raised));
+  border-color: color-mix(in oklch, var(--primary) 28%, transparent);
+}
+
+.alert-success {
+  color: var(--success);
+  background: color-mix(in oklch, var(--success) 10%, var(--bg-raised));
+  border-color: color-mix(in oklch, var(--success) 28%, transparent);
+}
+
+.alert-warning {
+  color: var(--warning);
+  background: color-mix(in oklch, var(--warning) 10%, var(--bg-raised));
+  border-color: color-mix(in oklch, var(--warning) 28%, transparent);
+}
+
+.alert-danger {
+  color: var(--danger);
+  background: color-mix(in oklch, var(--danger) 10%, var(--bg-raised));
+  border-color: color-mix(in oklch, var(--danger) 28%, transparent);
+}
+
+/* ── Dismissible alert ───────────────────────────────────── */
+.alert-dismissible {
+  padding-right: var(--s10);
+  position: relative;
+}
+
+.alert-close {
+  position: absolute;
+  top: var(--s3);
+  right: var(--s4);
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.5;
+  font-size: 1rem;
+  line-height: 1;
+  color: inherit;
+  padding: 0;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+
+/* ── components/forms.css ──────────────────────────────────────── */
+/* ============================================================
+   ARC — Forms
+   ============================================================ */
+
+/* ── Form group ──────────────────────────────────────────── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+
+/* ── Label ───────────────────────────────────────────────── */
+.label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.label .required {
+  color: var(--danger);
+  margin-left: var(--s1);
+}
+
+.label-hint {
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  margin-top: var(--s1);
+}
+
+/* ── Input / Textarea / Select ───────────────────────────── */
+.input,
+.textarea,
+.select {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--s3) var(--s4);
+  color: var(--text);
+  font-size: var(--text-sm);
+  width: 100%;
+  transition:
+    border-color var(--t),
+    box-shadow var(--t);
+
+  &::placeholder {
+    color: var(--text-faint);
+  }
+
+  &:hover {
+    border-color: color-mix(in oklch, var(--primary) 40%, var(--border));
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow:
+      0 0 0 3px color-mix(in oklch, var(--primary) 18%, transparent),
+      var(--glow-sm);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-inline-end: var(--s10);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%239aa0aa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--s4) center;
+  background-size: 0.875rem;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.6;
+}
+
+/* ── Input group ─────────────────────────────────────────── */
+.input-group {
+  display: flex;
+
+  & > * {
+    border-radius: 0;
+  }
+  & > :first-child {
+    border-radius: var(--r-md) 0 0 var(--r-md);
+  }
+  & > :last-child {
+    border-radius: 0 var(--r-md) var(--r-md) 0;
+  }
+
+  & .input {
+    border-right: none;
+    border-left: none;
+  }
+
+  & .btn {
+    flex-shrink: 0;
+  }
+}
+
+/* ── Toggle / Switch ─────────────────────────────────────── */
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s3);
+  cursor: pointer;
+  user-select: none;
+
+  & input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 44px;
+    height: 24px;
+    background: var(--bg-overlay);
+    border: 1px solid var(--border);
+    border-radius: var(--r-full);
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition:
+      background var(--t),
+      border-color var(--t),
+      box-shadow var(--t);
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: var(--text-faint);
+      border-radius: var(--r-full);
+      top: 50%;
+      left: 2px;
+      transform: translateY(-50%);
+      transition:
+        transform var(--t-spring),
+        background var(--t);
+    }
+
+    &:checked {
+      background: color-mix(in oklch, var(--primary) 25%, var(--bg-overlay));
+      border-color: var(--primary);
+      box-shadow: var(--glow-sm);
+
+      &::after {
+        transform: translate(20px, -50%);
+        background: var(--primary);
+      }
+    }
+  }
+}
+
+/* ── Checkbox / Radio ────────────────────────────────────── */
+.checkbox,
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s3);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  user-select: none;
+}
+
+/* ── Validation states ───────────────────────────────────── */
+.input-error {
+  border-color: var(--danger);
+  &:focus {
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--danger) 18%, transparent);
+  }
+}
+
+.input-success {
+  border-color: var(--success);
+  &:focus {
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--success) 18%, transparent);
+  }
+}
+
+.field-error {
+  font-size: var(--text-xs);
+  color: var(--danger);
+  margin-top: var(--s1);
+}
+
+
+/* ── components/nav.css ──────────────────────────────────────── */
+/* ============================================================
+   ARC — Navigation
+   ============================================================ */
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  padding: var(--s4) var(--s6);
+  background: color-mix(in oklch, var(--bg) 80%, transparent);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-dropdown);
+}
+
+.nav-brand {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+
+  & .brand-dot {
+    color: var(--accent);
+  }
+}
+
+.nav-items {
+  display: flex;
+  align-items: center;
+  gap: var(--s1);
+  list-style: none;
+  flex: 1;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  padding: var(--s2) var(--s4);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-radius: var(--r);
+  transition:
+    color var(--t-fast),
+    background var(--t-fast);
+
+  &:hover {
+    color: var(--text);
+    background: var(--bg-overlay);
+  }
+
+  &.active {
+    color: var(--primary);
+    background: color-mix(in oklch, var(--primary) 8%, var(--bg-overlay));
+  }
+}
+
+.nav-spacer {
+  flex: 1;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+}
+
+/* ── Breadcrumb ──────────────────────────────────────────── */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  list-style: none;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+
+  &::before {
+    content: "/";
+    color: var(--text-faint);
+  }
+
+  &:first-child::before {
+    display: none;
+  }
+
+  & a {
+    color: var(--text-muted);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+
+  &.active {
+    color: var(--text);
+  }
+}
+
+
+/* ── components/progress.css ──────────────────────────────────────── */
+/* ============================================================
+   ARC — Progress bars
+   ============================================================ */
+
+.progress {
+  height: 6px;
+  background: var(--bg-overlay);
+  border-radius: var(--r-full);
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--secondary), var(--primary));
+  border-radius: var(--r-full);
+  box-shadow: var(--glow-sm);
+  transition: width var(--t-slow);
+}
+
+/* ── Size variants ───────────────────────────────────────── */
+.progress-xs {
+  height: 2px;
+}
+.progress-sm {
+  height: 4px;
+}
+.progress-lg {
+  height: 10px;
+}
+.progress-xl {
+  height: 16px;
+  border-radius: var(--r-sm);
+}
+
+/* ── Color variants (override gradient) ─────────────────── */
+.progress-bar-success {
+  background: linear-gradient(
+    90deg,
+    var(--success),
+    color-mix(in oklch, var(--success) 70%, white)
+  );
+}
+
+.progress-bar-warning {
+  background: linear-gradient(
+    90deg,
+    var(--warning),
+    color-mix(in oklch, var(--warning) 70%, white)
+  );
+}
+
+.progress-bar-danger {
+  background: linear-gradient(
+    90deg,
+    var(--danger),
+    color-mix(in oklch, var(--danger) 70%, white)
+  );
+}
+
+/* ── Indeterminate / loading ─────────────────────────────── */
+.progress-indeterminate .progress-bar {
+  width: 40%;
+  animation: progress-slide 1.5s ease-in-out infinite;
+}
+
+@keyframes progress-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(350%);
+  }
+}
+
+
+/* ── components/extras.css ──────────────────────────────────────── */
+/* ============================================================
+   ARC — Extra Components
+   Stats and Timeline components for dashboards and product pages.
+   ============================================================ */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: var(--s4);
+}
+
+.stat-card {
+  padding: var(--s5);
+  border-radius: var(--r-xl);
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--t),
+    border-color var(--t),
+    box-shadow var(--t);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklch, var(--primary) 40%, var(--border));
+  box-shadow: var(--shadow);
+}
+
+.stat-label {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+  margin-bottom: var(--s2);
+}
+
+.stat-value {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.05;
+}
+
+.stat-delta {
+  margin-top: var(--s2);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.stat-delta-up {
+  color: var(--success);
+}
+
+.stat-delta-down {
+  color: var(--danger);
+}
+
+.timeline {
+  position: relative;
+  display: grid;
+  gap: var(--s5);
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: color-mix(in oklch, var(--primary) 25%, var(--border));
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: var(--s8);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid color-mix(in oklch, var(--primary) 50%, var(--border));
+  background: var(--bg-raised);
+  box-shadow: var(--glow-sm);
+}
+
+.timeline-meta {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+  margin-bottom: var(--s1);
+}
+
+.timeline-title {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: var(--s1);
+}
+
+.timeline-body {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}
+
+
+/* ── components/code-block.css ──────────────────────────────────────── */
+/* ============================================================
+   ARC — Code block
+   A styled container for displaying code with a header bar.
+   ============================================================ */
+
+.code-block {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s3) var(--s5);
+  background: var(--bg-overlay);
+  border-bottom: 1px solid var(--border);
+}
+
+.code-dots {
+  display: flex;
+  gap: var(--s2);
+
+  & span {
+    width: 12px;
+    height: 12px;
+    border-radius: var(--r-full);
+  }
+
+  & span:nth-child(1) {
+    background: oklch(63% 0.23 26);
+  }
+  & span:nth-child(2) {
+    background: oklch(78% 0.19 76);
+  }
+  & span:nth-child(3) {
+    background: oklch(78% 0.21 146);
+  }
+}
+
+.code-lang {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.code-copy {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 0.2em 0.6em;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  cursor: pointer;
+  transition:
+    border-color var(--t-fast),
+    color var(--t-fast);
+
+  &:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+}
+
+/* pre inside code-block resets border/radius */
+.code-block pre {
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: var(--s5) var(--s6);
+}
+
+/* ── Divider ─────────────────────────────────────────────── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  color: var(--text-faint);
+  font-size: var(--text-sm);
+
+  &::before,
+  &::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+}
+
+
+/* ── utilities/utilities.css ──────────────────────────────────────── */
+/* ============================================================
+  ARC — Utilities
+   ============================================================ */
+
+/* ── Display ─────────────────────────────────────────────── */
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
+}
+.inline {
+  display: inline;
+}
+.hidden {
+  display: none;
+}
+
+/* ── Overflow ────────────────────────────────────────────── */
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-auto {
+  overflow: auto;
+}
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+/* ── Position ────────────────────────────────────────────── */
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.sticky {
+  position: sticky;
+}
+.inset-0 {
+  inset: 0;
+}
+
+/* ── Sizing ──────────────────────────────────────────────── */
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
+.min-h-screen {
+  min-height: 100dvh;
+}
+.max-w-prose {
+  max-width: 65ch;
+}
+
+/* ── Text alignment ──────────────────────────────────────── */
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+
+/* ── Font size ───────────────────────────────────────────── */
+.text-xs {
+  font-size: var(--text-xs);
+}
+.text-sm {
+  font-size: var(--text-sm);
+}
+.text-base {
+  font-size: var(--text-base);
+}
+.text-lg {
+  font-size: var(--text-lg);
+}
+.text-xl {
+  font-size: var(--text-xl);
+}
+.text-2xl {
+  font-size: var(--text-2xl);
+}
+.text-3xl {
+  font-size: var(--text-3xl);
+}
+.text-4xl {
+  font-size: var(--text-4xl);
+}
+.text-5xl {
+  font-size: var(--text-5xl);
+}
+.text-6xl {
+  font-size: var(--text-6xl);
+}
+.text-7xl {
+  font-size: var(--text-7xl);
+}
+
+/* ── Font weight ─────────────────────────────────────────── */
+.font-light {
+  font-weight: 300;
+}
+.font-normal {
+  font-weight: 400;
+}
+.font-medium {
+  font-weight: 500;
+}
+.font-semibold {
+  font-weight: 600;
+}
+.font-bold {
+  font-weight: 700;
+}
+.font-black {
+  font-weight: 900;
+}
+.font-display {
+  font-family: var(--font-display);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ── Text color ──────────────────────────────────────────── */
+.text-primary {
+  color: var(--primary);
+}
+.text-secondary {
+  color: var(--secondary);
+}
+.text-accent {
+  color: var(--accent);
+}
+.text-success {
+  color: var(--success);
+}
+.text-warning {
+  color: var(--warning);
+}
+.text-danger {
+  color: var(--danger);
+}
+.text-muted {
+  color: var(--text-muted);
+}
+.text-faint {
+  color: var(--text-faint);
+}
+
+/* ── Gradient text ───────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--secondary) 50%,
+    var(--accent) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-subtle {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Background ──────────────────────────────────────────── */
+.bg-base {
+  background: var(--bg);
+}
+.bg-raised {
+  background: var(--bg-raised);
+}
+.bg-overlay {
+  background: var(--bg-overlay);
+}
+.bg-primary {
+  background: var(--primary);
+}
+
+/* ── Border ──────────────────────────────────────────────── */
+.border {
+  border: 1px solid var(--border);
+}
+.border-primary {
+  border-color: var(--primary);
+}
+.border-none {
+  border: none;
+}
+
+/* ── Letter spacing ──────────────────────────────────────── */
+.tracking-tight {
+  letter-spacing: -0.025em;
+}
+.tracking-normal {
+  letter-spacing: 0;
+}
+.tracking-wide {
+  letter-spacing: 0.05em;
+}
+.tracking-wider {
+  letter-spacing: 0.1em;
+}
+.tracking-widest {
+  letter-spacing: 0.2em;
+}
+
+/* ── Line height ─────────────────────────────────────────── */
+.leading-tight {
+  line-height: 1.25;
+}
+.leading-snug {
+  line-height: 1.375;
+}
+.leading-normal {
+  line-height: 1.5;
+}
+.leading-relaxed {
+  line-height: 1.7;
+}
+
+/* ── Border radius ───────────────────────────────────────── */
+.rounded-sm {
+  border-radius: var(--r-sm);
+}
+.rounded {
+  border-radius: var(--r);
+}
+.rounded-md {
+  border-radius: var(--r-md);
+}
+.rounded-lg {
+  border-radius: var(--r-lg);
+}
+.rounded-xl {
+  border-radius: var(--r-xl);
+}
+.rounded-2xl {
+  border-radius: var(--r-2xl);
+}
+.rounded-full {
+  border-radius: var(--r-full);
+}
+
+/* ── Shadow / Glow ───────────────────────────────────────── */
+.shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+.shadow {
+  box-shadow: var(--shadow);
+}
+.shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+.glow {
+  box-shadow: var(--glow);
+}
+.glow-lg {
+  box-shadow: var(--glow-lg);
+}
+
+/* ── Margin ──────────────────────────────────────────────── */
+.m-0 {
+  margin: 0;
+}
+.mx-auto {
+  margin-inline: auto;
+}
+.my-2 {
+  margin-block: var(--s2);
+}
+.my-4 {
+  margin-block: var(--s4);
+}
+.my-6 {
+  margin-block: var(--s6);
+}
+.my-8 {
+  margin-block: var(--s8);
+}
+.mt-1 {
+  margin-top: var(--s1);
+}
+.mt-2 {
+  margin-top: var(--s2);
+}
+.mt-3 {
+  margin-top: var(--s3);
+}
+.mt-4 {
+  margin-top: var(--s4);
+}
+.mt-6 {
+  margin-top: var(--s6);
+}
+.mt-8 {
+  margin-top: var(--s8);
+}
+.mb-1 {
+  margin-bottom: var(--s1);
+}
+.mb-2 {
+  margin-bottom: var(--s2);
+}
+.mb-3 {
+  margin-bottom: var(--s3);
+}
+.mb-4 {
+  margin-bottom: var(--s4);
+}
+.mb-6 {
+  margin-bottom: var(--s6);
+}
+.mb-8 {
+  margin-bottom: var(--s8);
+}
+
+/* ── Padding ─────────────────────────────────────────────── */
+.p-0 {
+  padding: 0;
+}
+.p-2 {
+  padding: var(--s2);
+}
+.p-4 {
+  padding: var(--s4);
+}
+.p-6 {
+  padding: var(--s6);
+}
+.p-8 {
+  padding: var(--s8);
+}
+.px-4 {
+  padding-inline: var(--s4);
+}
+.px-6 {
+  padding-inline: var(--s6);
+}
+.px-8 {
+  padding-inline: var(--s8);
+}
+.py-2 {
+  padding-block: var(--s2);
+}
+.py-4 {
+  padding-block: var(--s4);
+}
+.py-6 {
+  padding-block: var(--s6);
+}
+.py-8 {
+  padding-block: var(--s8);
+}
+
+/* ── Opacity ─────────────────────────────────────────────── */
+.opacity-0 {
+  opacity: 0;
+}
+.opacity-50 {
+  opacity: 0.5;
+}
+.opacity-75 {
+  opacity: 0.75;
+}
+
+/* ── Pointer / select ────────────────────────────────────── */
+.cursor-pointer {
+  cursor: pointer;
+}
+.cursor-default {
+  cursor: default;
+}
+.select-none {
+  user-select: none;
+}
+.pointer-none {
+  pointer-events: none;
+}
+
+/* ── Accessibility ───────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ── Aspect ratio ────────────────────────────────────────── */
+.aspect-square {
+  aspect-ratio: 1;
+}
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+
+/* ── themes/theme-cyber.css ──────────────────────────────────────── */
+/* ============================================================
+   THEME: Cyber
+   Space / cyberpunk aesthetic.
+   Palette: cyan × purple × pink
+   Display font: Orbitron
+   Body font: Space Grotesk
+   Signature: sliding gradient buttons, neon glow, scanlines
+   ============================================================ */
+
+
+@layer arc.theme {
+  /* ── Color palette ─────────────────────────────────────── */
+  :root {
+    --cyan: oklch(82% 0.17 194);
+    --purple: oklch(66% 0.22 292);
+    --pink: oklch(70% 0.25 354);
+    --green: oklch(78% 0.21 146);
+    --amber: oklch(80% 0.19 76);
+    --red: oklch(63% 0.23 26);
+
+    --primary: var(--cyan);
+    --secondary: var(--purple);
+    --accent: var(--pink);
+    --success: var(--green);
+    --warning: var(--amber);
+    --danger: var(--red);
+
+    --font-display: "Orbitron", system-ui, sans-serif;
+    --font-sans: "Space Grotesk", system-ui, sans-serif;
+
+    --hero-photo: url("https://picsum.photos/seed/arc-cyber-neon/2400/1400");
+    --hero-photo-position: center 52%;
+
+    --btn-primary-text: oklch(8% 0.013 258);
+
+    /* Glow enabled */
+    --glow-sm: 0 0 8px color-mix(in oklch, var(--primary) 60%, transparent);
+    --glow:
+      0 0 16px color-mix(in oklch, var(--primary) 50%, transparent),
+      0 0 32px color-mix(in oklch, var(--primary) 20%, transparent);
+    --glow-lg:
+      0 0 24px color-mix(in oklch, var(--primary) 60%, transparent),
+      0 0 48px color-mix(in oklch, var(--primary) 30%, transparent),
+      0 0 80px color-mix(in oklch, var(--primary) 10%, transparent);
+  }
+
+  /* ── Sliding gradient buttons ──────────────────────────── */
+  .btn-primary {
+    background: linear-gradient(
+        90deg,
+        var(--purple) 0%,
+        var(--cyan) 45%,
+        var(--green) 100%
+      )
+      100% 0 / 220% 100% no-repeat;
+    color: var(--btn-primary-text);
+    transition:
+      background-position var(--t),
+      box-shadow var(--t),
+      transform var(--t-fast);
+
+    &:hover {
+      background-position: 0% 0;
+      box-shadow: var(--glow);
+    }
+  }
+
+  .btn-secondary {
+    background: linear-gradient(
+        90deg,
+        var(--pink) 0%,
+        var(--purple) 45%,
+        var(--cyan) 100%
+      )
+      100% 0 / 220% 100% no-repeat;
+    color: oklch(95% 0.004 258);
+    transition:
+      background-position var(--t),
+      box-shadow var(--t),
+      transform var(--t-fast);
+
+    &:hover {
+      background-position: 0% 0;
+      box-shadow:
+        0 0 16px color-mix(in oklch, var(--purple) 50%, transparent),
+        0 0 32px color-mix(in oklch, var(--purple) 20%, transparent);
+    }
+  }
+
+  .btn-accent {
+    background: linear-gradient(
+        90deg,
+        var(--cyan) 0%,
+        var(--pink) 50%,
+        var(--amber) 100%
+      )
+      100% 0 / 220% 100% no-repeat;
+    color: var(--btn-primary-text);
+    transition:
+      background-position var(--t),
+      box-shadow var(--t),
+      transform var(--t-fast);
+
+    &:hover {
+      background-position: 0% 0;
+      box-shadow:
+        0 0 16px color-mix(in oklch, var(--pink) 50%, transparent),
+        0 0 32px color-mix(in oklch, var(--pink) 20%, transparent);
+    }
+  }
+
+  /* ── Card glow — neon border ───────────────────────────── */
+  .card-glow {
+    border-color: color-mix(in oklch, var(--primary) 25%, var(--border));
+    box-shadow:
+      0 0 0 1px color-mix(in oklch, var(--primary) 12%, transparent),
+      0 0 24px color-mix(in oklch, var(--primary) 6%, transparent);
+
+    &:hover {
+      border-color: color-mix(in oklch, var(--primary) 55%, var(--border));
+      box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--primary) 28%, transparent),
+        var(--glow);
+    }
+  }
+
+  /* ── Gradient text with aurora animation ───────────────── */
+  .text-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--cyan) 0%,
+      var(--purple) 50%,
+      var(--pink) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-aurora {
+    background: linear-gradient(
+      135deg,
+      var(--cyan) 0%,
+      var(--green) 45%,
+      var(--cyan) 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: aurora 4s linear infinite;
+  }
+
+  /* ── Scanlines overlay ─────────────────────────────────── */
+  .scanlines {
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        oklch(0% 0 0 / 0.025) 3px,
+        oklch(0% 0 0 / 0.025) 4px
+      );
+      pointer-events: none;
+      border-radius: inherit;
+    }
+  }
+
+  /* ── Glitch text ───────────────────────────────────────── */
+  .text-glitch {
+    position: relative;
+
+    &::before,
+    &::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    &::before {
+      color: var(--cyan);
+      animation: glitch-1 4s infinite;
+      clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+      opacity: 0;
+    }
+
+    &::after {
+      color: var(--pink);
+      animation: glitch-2 4s infinite;
+      clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+      opacity: 0;
+    }
+  }
+}

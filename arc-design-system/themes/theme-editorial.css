@@ -1,0 +1,132 @@
+/* ============================================================
+   THEME: Editorial
+   Monochrome luxe with restrained copper accents.
+   Palette: graphite × parchment × copper
+   Display font: Cormorant Garamond
+   Body font: IBM Plex Sans
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
+
+@layer arc.theme {
+  :root {
+    --graphite: oklch(30% 0.02 258);
+    --parchment: oklch(88% 0.02 82);
+    --copper: oklch(62% 0.14 52);
+
+    --primary: var(--parchment);
+    --secondary: var(--graphite);
+    --accent: var(--copper);
+    --success: oklch(66% 0.11 145);
+    --warning: oklch(74% 0.14 72);
+    --danger: oklch(58% 0.17 30);
+
+    --bg: oklch(9% 0.006 258);
+    --bg-raised: oklch(13% 0.007 258);
+    --bg-overlay: oklch(18% 0.009 258);
+    --border: oklch(28% 0.012 258);
+
+    --text: oklch(92% 0.004 82);
+    --text-muted: oklch(62% 0.006 82);
+    --text-faint: oklch(42% 0.004 82);
+
+    --font-display: "Cormorant Garamond", Georgia, serif;
+    --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+
+    --hero-photo: url("https://picsum.photos/seed/arc-editorial-luxe/2400/1400");
+    --hero-photo-position: center 40%;
+
+    --btn-primary-text: oklch(12% 0.004 258);
+
+    --r-sm: 0.15rem;
+    --r: 0.25rem;
+    --r-md: 0.35rem;
+    --r-lg: 0.45rem;
+    --r-xl: 0.6rem;
+    --r-2xl: 0.8rem;
+
+    --glow-sm: none;
+    --glow: none;
+    --glow-lg: none;
+
+    --shadow-sm: 0 1px 2px oklch(0% 0 0 / 0.45);
+    --shadow: 0 4px 12px oklch(0% 0 0 / 0.55);
+    --shadow-lg: 0 10px 26px oklch(0% 0 0 / 0.62);
+  }
+
+  [data-theme="light"] {
+    --bg: oklch(97% 0.004 82);
+    --bg-raised: oklch(94% 0.005 82);
+    --bg-overlay: oklch(90% 0.006 82);
+    --border: oklch(80% 0.01 82);
+    --text: oklch(20% 0.006 258);
+    --text-muted: oklch(46% 0.008 258);
+    --text-faint: oklch(62% 0.007 258);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: oklch(97% 0.004 82);
+      --bg-raised: oklch(94% 0.005 82);
+      --bg-overlay: oklch(90% 0.006 82);
+      --border: oklch(80% 0.01 82);
+      --text: oklch(20% 0.006 258);
+      --text-muted: oklch(46% 0.008 258);
+      --text-faint: oklch(62% 0.007 258);
+    }
+  }
+
+  .btn-primary {
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklch, var(--parchment) 92%, white) 0%,
+      color-mix(in oklch, var(--copper) 35%, var(--parchment)) 100%
+    );
+    color: var(--btn-primary-text);
+    letter-spacing: 0.03em;
+
+    &:hover {
+      background: linear-gradient(
+        135deg,
+        color-mix(in oklch, var(--parchment) 82%, white) 0%,
+        color-mix(in oklch, var(--copper) 45%, var(--parchment)) 100%
+      );
+      box-shadow: var(--shadow-sm);
+    }
+  }
+
+  .btn-secondary {
+    background: color-mix(in oklch, var(--graphite) 80%, black);
+    color: oklch(95% 0.003 82);
+
+    &:hover {
+      background: color-mix(in oklch, var(--graphite) 65%, black);
+      box-shadow: none;
+    }
+  }
+
+  .card {
+    border-color: color-mix(in oklch, var(--border) 75%, var(--copper));
+  }
+
+  .card-glow {
+    border-color: color-mix(in oklch, var(--copper) 30%, var(--border));
+    box-shadow: var(--shadow-sm);
+
+    &:hover {
+      border-color: color-mix(in oklch, var(--copper) 55%, var(--border));
+      box-shadow: var(--shadow);
+    }
+  }
+
+  .text-gradient {
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklch, var(--parchment) 94%, white) 0%,
+      var(--copper) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

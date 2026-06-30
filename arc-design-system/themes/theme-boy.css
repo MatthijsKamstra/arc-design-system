@@ -1,0 +1,161 @@
+/* ============================================================
+  THEME: Boy
+  Blue-forward, sharp, high-contrast.
+  Display font: Anton (massive block style)
+  Body font: Archivo (condensed and bold)
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@500;600;700;800&display=swap");
+
+@layer arc.theme {
+  :root {
+    --navy: oklch(34% 0.12 255);
+    --electric: oklch(70% 0.28 240);
+    --sky: oklch(82% 0.16 225);
+    --slate: oklch(50% 0.08 258);
+    --mint: oklch(66% 0.14 175);
+    --crimson: oklch(60% 0.22 20);
+
+    --primary: var(--electric);
+    --secondary: var(--navy);
+    --accent: var(--sky);
+    --success: var(--mint);
+    --warning: oklch(80% 0.14 90);
+    --danger: var(--crimson);
+
+    --font-display: "Anton", system-ui, sans-serif;
+    --font-sans: "Archivo", system-ui, sans-serif;
+
+    --hero-photo: url("https://picsum.photos/seed/arc-boy-blue-stadium/2400/1400");
+    --hero-photo-position: center 42%;
+
+    --btn-primary-text: oklch(8% 0.004 0);
+
+    /* Very dark, almost black */
+    --bg: oklch(8% 0.006 258);
+    --bg-raised: oklch(13% 0.008 258);
+    --bg-overlay: oklch(18% 0.01 258);
+    --border: oklch(25% 0.012 258);
+
+    --text: oklch(94% 0.005 258);
+    --text-muted: oklch(56% 0.01 258);
+    --text-faint: oklch(36% 0.007 258);
+
+    /* Sharp corners */
+    --r-sm: 0rem;
+    --r: 0.06rem;
+    --r-md: 0.12rem;
+    --r-lg: 0.2rem;
+    --r-xl: 0.28rem;
+    --r-2xl: 0.4rem;
+
+    /* Blue glow */
+    --glow-sm: 0 0 10px color-mix(in oklch, var(--primary) 70%, transparent);
+    --glow:
+      0 0 18px color-mix(in oklch, var(--primary) 60%, transparent),
+      0 0 36px color-mix(in oklch, var(--primary) 24%, transparent);
+    --glow-lg:
+      0 0 30px color-mix(in oklch, var(--primary) 75%, transparent),
+      0 0 62px color-mix(in oklch, var(--primary) 36%, transparent);
+  }
+
+  [data-theme="light"] {
+    --bg: oklch(14% 0.006 258);
+    --bg-raised: oklch(18% 0.008 258);
+    --bg-overlay: oklch(22% 0.01 258);
+    --border: oklch(30% 0.012 258);
+    --text: oklch(92% 0.005 258);
+    --text-muted: oklch(58% 0.01 258);
+    --text-faint: oklch(40% 0.007 258);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: oklch(14% 0.006 258);
+      --bg-raised: oklch(18% 0.008 258);
+      --bg-overlay: oklch(22% 0.01 258);
+      --border: oklch(30% 0.012 258);
+      --text: oklch(92% 0.005 258);
+      --text-muted: oklch(58% 0.01 258);
+      --text-faint: oklch(40% 0.007 258);
+    }
+  }
+
+  /* ── Bold gradient buttons ────────────────────────────── */
+  .btn-primary {
+    background: linear-gradient(
+        90deg,
+        var(--navy) 0%,
+        var(--primary) 45%,
+        var(--sky) 100%
+      )
+      100% 0 / 260% 100% no-repeat;
+    color: var(--btn-primary-text);
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    transition:
+      background-position var(--t),
+      box-shadow var(--t),
+      transform var(--t-fast);
+
+    &:hover {
+      background-position: 0% 0;
+      box-shadow: var(--glow);
+    }
+  }
+
+  .btn-secondary {
+    background: linear-gradient(
+        90deg,
+        oklch(30% 0.1 255) 0%,
+        var(--secondary) 55%,
+        var(--primary) 100%
+      )
+      100% 0 / 250% 100% no-repeat;
+    color: oklch(96% 0.004 258);
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    transition:
+      background-position var(--t),
+      box-shadow var(--t),
+      transform var(--t-fast);
+
+    &:hover {
+      background-position: 0% 0;
+    }
+  }
+
+  /* ── Text gradient ────────────────────────────────────── */
+  .text-gradient {
+    background: linear-gradient(
+      90deg,
+      var(--sky) 0%,
+      var(--primary) 45%,
+      var(--secondary) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ── Card glow ────────────────────────────────────────── */
+  .card-glow {
+    border-color: color-mix(in oklch, var(--primary) 30%, var(--border));
+    box-shadow:
+      0 0 0 1px color-mix(in oklch, var(--primary) 15%, transparent),
+      0 0 24px color-mix(in oklch, var(--primary) 6%, transparent);
+
+    &:hover {
+      border-color: color-mix(in oklch, var(--primary) 60%, var(--border));
+      box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--primary) 30%, transparent),
+        var(--glow);
+    }
+  }
+
+  /* ── Button text uppercase for all ───────────────────── */
+  .btn {
+    letter-spacing: 0.11em;
+    font-weight: 800;
+  }
+}

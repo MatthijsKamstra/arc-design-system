@@ -1,0 +1,149 @@
+/* ============================================================
+   THEME: Suite (Corporate)
+   Professional, restrained, trustworthy.
+   Palette: navy blue, cool grays
+   Display font: Playfair Display
+   Body font: Source Sans 3
+   Sharp(er) corners, subtle shadows, no decorative effects.
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@400;600;700&display=swap");
+
+@layer arc.theme {
+  :root {
+    /* Corporate navy + slate */
+    --primary: oklch(44% 0.14 256); /* deep navy-blue */
+    --secondary: oklch(50% 0.08 258); /* slate */
+    --accent: oklch(53% 0.14 218); /* steel blue */
+    --success: oklch(52% 0.14 150); /* muted green */
+    --warning: oklch(68% 0.14 75); /* muted amber */
+    --danger: oklch(50% 0.18 28); /* muted red */
+
+    /* Dark surfaces — cool and slightly blue-tinted */
+    --bg: oklch(11% 0.008 258);
+    --bg-raised: oklch(16% 0.01 258);
+    --bg-overlay: oklch(21% 0.013 258);
+    --border: oklch(30% 0.014 258);
+
+    --font-sans: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+    --font-display: "Playfair Display", Georgia, serif;
+
+    --hero-photo: url("https://picsum.photos/seed/arc-corporate-office/2400/1400");
+    --hero-photo-position: center 50%;
+
+    --btn-primary-text: oklch(98% 0 0);
+
+    /* Conservative, tight radius */
+    --r-sm: 0.15rem;
+    --r: 0.25rem;
+    --r-md: 0.3rem;
+    --r-lg: 0.4rem;
+    --r-xl: 0.5rem;
+    --r-2xl: 0.75rem;
+
+    /* No glow — only structured shadows */
+    --glow-sm: none;
+    --glow: none;
+    --glow-lg: none;
+
+    --shadow-sm: 0 1px 2px oklch(0% 0 0 / 0.5);
+    --shadow: 0 2px 6px oklch(0% 0 0 / 0.55), 0 1px 2px oklch(0% 0 0 / 0.4);
+    --shadow-lg: 0 4px 12px oklch(0% 0 0 / 0.6), 0 2px 4px oklch(0% 0 0 / 0.4);
+  }
+
+  [data-theme="light"] {
+    --primary: oklch(42% 0.14 256);
+    --secondary: oklch(46% 0.08 258);
+    --bg: oklch(97% 0.002 258);
+    --bg-raised: oklch(100% 0 0);
+    --bg-overlay: oklch(94% 0.004 258);
+    --border: oklch(84% 0.008 258);
+    --shadow-sm: 0 1px 2px oklch(0% 0 0 / 0.05);
+    --shadow: 0 2px 6px oklch(0% 0 0 / 0.08), 0 1px 2px oklch(0% 0 0 / 0.05);
+    --shadow-lg:
+      0 4px 12px oklch(0% 0 0 / 0.12), 0 2px 4px oklch(0% 0 0 / 0.06);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --primary: oklch(42% 0.14 256);
+      --bg: oklch(97% 0.002 258);
+      --bg-raised: oklch(100% 0 0);
+      --bg-overlay: oklch(94% 0.004 258);
+      --border: oklch(84% 0.008 258);
+    }
+  }
+
+  /* ── Buttons — solid, professional ─────────────────────── */
+  .btn-primary {
+    background: var(--primary);
+    color: var(--btn-primary-text);
+    font-weight: 500;
+    letter-spacing: 0;
+
+    &:hover {
+      background: color-mix(in oklch, var(--primary) 85%, white);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+
+  .btn-secondary {
+    background: var(--secondary);
+    color: var(--btn-primary-text);
+
+    &:hover {
+      background: color-mix(in oklch, var(--secondary) 85%, white);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+
+  /* Ghost is more muted */
+  .btn-ghost {
+    border-color: var(--border);
+    color: var(--text-muted);
+    font-weight: 400;
+
+    &:hover {
+      background: var(--bg-overlay);
+      border-color: var(--secondary);
+    }
+  }
+
+  /* ── Card — structured ─────────────────────────────────── */
+  .card {
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .card-hover {
+    &:hover {
+      border-color: color-mix(in oklch, var(--primary) 30%, var(--border));
+      box-shadow: var(--shadow);
+      transform: none;
+    }
+  }
+
+  .card-glow {
+    border-color: var(--border);
+    box-shadow: var(--shadow-sm);
+
+    &:hover {
+      border-color: color-mix(in oklch, var(--primary) 40%, var(--border));
+      box-shadow: var(--shadow);
+    }
+  }
+
+  /* Nav — more formal */
+  .nav {
+    background: var(--bg-raised);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  /* Gradient text — plain primary color in corporate */
+  .text-gradient {
+    background: none;
+    -webkit-text-fill-color: var(--primary);
+    color: var(--primary);
+  }
+}

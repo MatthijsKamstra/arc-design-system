@@ -1,0 +1,11 @@
+/*
+ * custom.css — applicatie-specifieke stijlen
+ *
+ * Bootstrap utility classes dekken het meeste.
+ * Voeg hier toe wat Bootstrap niet biedt.
+ */
+
+/* Minimale verticale adembaring onderaan elke pagina */
+body {
+  padding-bottom: 3rem;
+}

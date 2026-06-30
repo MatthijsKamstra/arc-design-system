@@ -1,0 +1,139 @@
+/* ============================================================
+  THEME: Girly
+  Pink-forward, playful, rounded.
+  Display font: Lobster Two (dramatic script)
+  Body font: Nunito (round and punchy)
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Lobster+Two:wght@400;700&family=Nunito:wght@500;600;700;800&display=swap");
+
+@layer arc.theme {
+  :root {
+    --pink: oklch(76% 0.24 352);
+    --hot-pink: oklch(68% 0.28 346);
+    --bubblegum: oklch(84% 0.18 6);
+    --lavender: oklch(76% 0.18 310);
+    --mint: oklch(82% 0.14 168);
+
+    --primary: var(--pink);
+    --secondary: var(--hot-pink);
+    --accent: var(--bubblegum);
+    --success: var(--mint);
+    --warning: oklch(80% 0.18 60);
+    --danger: oklch(62% 0.24 0);
+
+    --font-display: "Lobster Two", cursive;
+    --font-sans: "Nunito", system-ui, sans-serif;
+
+    --hero-photo: url("https://picsum.photos/seed/arc-girl-pink-pop/2400/1400");
+    --hero-photo-position: center 38%;
+
+    --btn-primary-text: oklch(98% 0.004 0);
+
+    /* Dark base — warm deep rose */
+    --bg: oklch(10% 0.01 340);
+    --bg-raised: oklch(15% 0.014 340);
+    --bg-overlay: oklch(21% 0.018 340);
+    --border: oklch(30% 0.02 340);
+
+    --text: oklch(95% 0.006 340);
+    --text-muted: oklch(60% 0.016 340);
+    --text-faint: oklch(40% 0.01 340);
+
+    /* Very round — soft edges everywhere */
+    --r-sm: 1rem;
+    --r: 1.4rem;
+    --r-md: 1.8rem;
+    --r-lg: 2.3rem;
+    --r-xl: 2.8rem;
+    --r-2xl: 3.4rem;
+
+    /* Pink glow */
+    --glow-sm: 0 0 14px color-mix(in oklch, var(--primary) 58%, transparent);
+    --glow:
+      0 0 26px color-mix(in oklch, var(--primary) 48%, transparent),
+      0 0 54px color-mix(in oklch, var(--primary) 22%, transparent);
+    --glow-lg:
+      0 0 40px color-mix(in oklch, var(--primary) 62%, transparent),
+      0 0 78px color-mix(in oklch, var(--primary) 30%, transparent);
+  }
+
+  [data-theme="light"] {
+    --bg: oklch(98% 0.006 340);
+    --bg-raised: oklch(96% 0.01 340);
+    --bg-overlay: oklch(92% 0.015 340);
+    --border: oklch(82% 0.02 350);
+    --text: oklch(18% 0.01 340);
+    --text-muted: oklch(50% 0.018 340);
+    --text-faint: oklch(68% 0.012 340);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: oklch(98% 0.006 340);
+      --bg-raised: oklch(96% 0.01 340);
+      --bg-overlay: oklch(92% 0.015 340);
+      --border: oklch(82% 0.02 350);
+      --text: oklch(18% 0.01 340);
+      --text-muted: oklch(50% 0.018 340);
+      --text-faint: oklch(68% 0.012 340);
+    }
+  }
+
+  /* ── Soft gradient buttons ────────────────────────────── */
+  .btn-primary {
+    background: linear-gradient(
+        135deg,
+        var(--lavender) 0%,
+        var(--secondary) 30%,
+        var(--primary) 60%,
+        var(--accent) 100%
+      )
+      100% 0 / 260% 100% no-repeat;
+    color: oklch(12% 0.01 0);
+    transition:
+      background-position var(--t),
+      box-shadow var(--t),
+      transform var(--t-fast);
+
+    &:hover {
+      background-position: 0% 0;
+      box-shadow: var(--glow);
+    }
+  }
+
+  /* ── Text gradient ────────────────────────────────────── */
+  .text-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--lavender) 0%,
+      var(--secondary) 36%,
+      var(--primary) 62%,
+      var(--accent) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ── Card glow ────────────────────────────────────────── */
+  .card-glow {
+    border-color: color-mix(in oklch, var(--primary) 28%, var(--border));
+    box-shadow:
+      0 0 0 1px color-mix(in oklch, var(--primary) 14%, transparent),
+      0 0 40px color-mix(in oklch, var(--primary) 10%, transparent);
+
+    &:hover {
+      border-color: color-mix(in oklch, var(--primary) 55%, var(--border));
+      box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--primary) 28%, transparent),
+        var(--glow);
+    }
+  }
+
+  .btn,
+  .badge {
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+}

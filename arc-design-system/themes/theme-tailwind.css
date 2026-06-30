@@ -1,0 +1,135 @@
+/* ============================================================
+   THEME: Breeze (Tailwind-inspired)
+   Clean, minimal, utility-first aesthetic.
+   Palette: Indigo primary, slate neutrals
+   Display font: DM Serif Display
+   Body font: DM Sans
+   Rounder corners, very subtle shadows, no glow.
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap");
+
+@layer arc.theme {
+  :root {
+    /* Tailwind Indigo / Violet palette in oklch */
+    --primary: oklch(56% 0.22 264); /* indigo-600 */
+    --secondary: oklch(58% 0.19 294); /* violet-600 */
+    --accent: oklch(61% 0.23 330); /* fuchsia-600 */
+    --success: oklch(63% 0.17 154); /* emerald-600 */
+    --warning: oklch(75% 0.17 72); /* amber-500 */
+    --danger: oklch(56% 0.22 26); /* rose-600 */
+
+    /* Slate-based surfaces */
+    --bg: oklch(12% 0.006 258);
+    --bg-raised: oklch(17% 0.008 258);
+    --bg-overlay: oklch(22% 0.01 258);
+    --border: oklch(30% 0.012 258);
+
+    --font-sans: "DM Sans", system-ui, sans-serif;
+    --font-display: "DM Serif Display", serif;
+
+    --hero-photo: url("https://picsum.photos/seed/arc-tailwind-coast/2400/1400");
+    --hero-photo-position: center 44%;
+
+    --btn-primary-text: oklch(98% 0 0);
+
+    /* Tailwind is rounder */
+    --r-sm: 0.25rem;
+    --r: 0.5rem;
+    --r-md: 0.5rem;
+    --r-lg: 0.75rem;
+    --r-xl: 1rem;
+    --r-2xl: 1.5rem;
+
+    /* No glow — shadows only */
+    --glow-sm: none;
+    --glow: none;
+    --glow-lg: none;
+
+    /* Softer shadows */
+    --shadow-sm: 0 1px 2px oklch(0% 0 0 / 0.4);
+    --shadow: 0 2px 8px oklch(0% 0 0 / 0.5);
+    --shadow-lg: 0 4px 16px oklch(0% 0 0 / 0.6);
+  }
+
+  [data-theme="light"] {
+    --bg: oklch(100% 0 0);
+    --bg-raised: oklch(97% 0.002 258);
+    --bg-overlay: oklch(94% 0.004 258);
+    --border: oklch(88% 0.006 258);
+    --shadow-sm: 0 1px 2px oklch(0% 0 0 / 0.05);
+    --shadow: 0 2px 8px oklch(0% 0 0 / 0.08);
+    --shadow-lg: 0 4px 16px oklch(0% 0 0 / 0.12);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: oklch(100% 0 0);
+      --bg-raised: oklch(97% 0.002 258);
+      --bg-overlay: oklch(94% 0.004 258);
+      --border: oklch(88% 0.006 258);
+    }
+  }
+
+  /* ── Buttons — Tailwind style (ring focus, no gradient) ─── */
+  .btn-primary {
+    background: var(--primary);
+    color: var(--btn-primary-text);
+    font-weight: 600;
+
+    &:hover {
+      background: color-mix(in oklch, var(--primary) 88%, white);
+      box-shadow: none;
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 3px color-mix(in oklch, var(--primary) 35%, transparent);
+    }
+  }
+
+  .btn-secondary {
+    background: var(--secondary);
+    color: var(--btn-primary-text);
+
+    &:hover {
+      background: color-mix(in oklch, var(--secondary) 88%, white);
+      box-shadow: none;
+    }
+  }
+
+  /* ── Card — flat modern ────────────────────────────────── */
+  .card {
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--r-xl);
+  }
+
+  .card-hover {
+    transition:
+      box-shadow var(--t),
+      transform var(--t);
+
+    &:hover {
+      border-color: var(--border);
+      box-shadow: var(--shadow);
+      transform: translateY(-1px);
+    }
+  }
+
+  .card-glow {
+    border-color: var(--border);
+    box-shadow: var(--shadow-sm);
+
+    &:hover {
+      border-color: color-mix(in oklch, var(--primary) 35%, var(--border));
+      box-shadow: var(--shadow);
+    }
+  }
+
+  /* ── Gradient text — indigo/violet ─────────────────────── */
+  .text-gradient {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}

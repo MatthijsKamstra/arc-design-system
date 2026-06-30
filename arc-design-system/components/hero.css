@@ -1,0 +1,188 @@
+/* ============================================================
+   ARC — Hero
+   Full-width hero with theme-driven background photo variables.
+   Variables expected:
+   --hero-photo
+   --hero-photo-position
+   ============================================================ */
+
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      to bottom,
+      color-mix(in oklch, var(--bg) 35%, transparent) 0%,
+      color-mix(in oklch, var(--bg) 72%, transparent) 45%,
+      color-mix(in oklch, var(--bg) 90%, transparent) 100%
+    ),
+    var(--hero-photo);
+  background-size: cover;
+  background-position: var(--hero-photo-position);
+  background-repeat: no-repeat;
+  opacity: 0.92;
+  z-index: 0;
+  transition:
+    background-image var(--t),
+    filter var(--t),
+    transform var(--t);
+  transform: scale(1.02);
+  filter: saturate(1.05) contrast(1.02);
+  pointer-events: none;
+}
+
+.hero-nebula {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-nebula::before {
+  content: "";
+  position: absolute;
+  width: 80vw;
+  height: 80vh;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in oklch, var(--secondary) 12%, transparent) 0%,
+    color-mix(in oklch, var(--primary) 6%, transparent) 40%,
+    transparent 70%
+  );
+  animation: nebula-pulse 8s ease-in-out infinite;
+}
+
+.hero-nebula::after {
+  content: "";
+  position: absolute;
+  width: 60vw;
+  height: 60vh;
+  bottom: -10%;
+  right: -10%;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in oklch, var(--accent) 10%, transparent) 0%,
+    color-mix(in oklch, var(--secondary) 5%, transparent) 40%,
+    transparent 70%
+  );
+  animation: nebula-pulse 6s ease-in-out infinite reverse;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      color-mix(in oklch, var(--primary) 4%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in oklch, var(--primary) 4%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 60px 60px;
+  mask-image: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    black 30%,
+    transparent 80%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 80% at 50% 50%,
+    black 30%,
+    transparent 80%
+  );
+  transition: background-image 0.4s;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding-block: var(--s32);
+  max-width: 62ch;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--primary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: var(--s6);
+}
+
+.hero-eyebrow::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--primary);
+  box-shadow: var(--glow-sm);
+}
+
+.hero-title {
+  font-size: clamp(4rem, 14vw, 8rem);
+  font-family: var(--font-display);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--s6);
+}
+
+.hero-sub {
+  font-size: var(--text-xl);
+  color: var(--text-muted);
+  margin-bottom: var(--s10);
+  max-width: 52ch;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s4);
+  margin-bottom: var(--s10);
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+
+#starfield,
+.hero-nebula {
+  display: none;
+}
+
+[data-active-theme="cyber"] #starfield,
+[data-active-theme="cyber"] .hero-nebula {
+  display: block;
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: star-twinkle var(--duration, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(3rem, 16vw, 6rem);
+  }
+}

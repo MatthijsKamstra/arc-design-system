@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Over — WebComponents App</title>
+	<link rel="stylesheet" href="css/app.css" />
+</head>
+
+<body>
+
+	<ui-nav current="about.html"></ui-nav>
+
+	<div class="container">
+		<h1 class="mb-1">Over</h1>
+		<p class="text-muted mb-4">Hoe deze app is gebouwd</p>
+
+		<div class="row g-4">
+			<div class="col-md-8">
+				<div class="card mb-4">
+					<div class="card-header fw-semibold">Aanpak</div>
+					<div class="card-body">
+						<p>
+							Deze app gebruikt <strong>Bootstrap 5</strong> voor stijl en layout,
+							gecombineerd met <strong>Light DOM Web Components</strong> voor herbruikbare UI-elementen.
+						</p>
+						<p>
+							Geen framework. Geen build-stap. Gewoon de Web Platform APIs zoals die bedoeld zijn.
+						</p>
+						<p class="mb-0">
+							De <code>&lt;ui-nav&gt;</code> component rendert direct in de pagina-DOM.
+							Bootstrap-klassen zoals <code>navbar-dark</code> en <code>nav-link active</code>
+							werken zonder extra configuratie.
+						</p>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-header fw-semibold">Waarom Light DOM hier de juiste keuze is</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">
+							Bootstrap werkt direct — geen CSS hoeft opnieuw geïmporteerd te worden
+						</li>
+						<li class="list-group-item">
+							De navigatie erft <code>navbar-dark bg-dark</code> zonder Shadow DOM-barrières
+						</li>
+						<li class="list-group-item">
+							DevTools toont de gegenereerde HTML direct, geen verborgen shadow root
+						</li>
+						<li class="list-group-item">
+							Het <code>current</code>-attribuut bepaalt welk nav-item <code>active</code> krijgt
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="card">
+					<div class="card-header fw-semibold">Structuur</div>
+					<div class="card-body">
+						<pre class="mb-0" style="font-size: 0.8rem;">demo-app/
+	├── index.html
+	├── users.html
+	├── settings.html
+	├── about.html
+	├── components/
+	│   └── ui-nav.js
+	└── js/
+	    └── app.js</pre>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="module" src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+/* ============================================================
+   THEME: Popie (K-pop)
+   Vibrant, energetic, youthful. Inspired by K-pop aesthetic.
+   Palette: vivid magenta × coral × bright yellow
+   Display font: Black Han Sans
+   Body font: Nanum Gothic
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic:wght@400;700;800&display=swap");
+
+@layer arc.theme {
+  :root {
+    --magenta: oklch(62% 0.28 350);
+    --coral: oklch(70% 0.22 25);
+    --yellow: oklch(88% 0.2 90);
+    --mint: oklch(78% 0.18 165);
+    --violet: oklch(60% 0.26 300);
+
+    --primary: var(--magenta);
+    --secondary: var(--coral);
+    --accent: var(--yellow);
+    --success: var(--mint);
+    --warning: oklch(82% 0.2 70);
+    --danger: oklch(58% 0.28 18);
+
+    --font-display: "Black Han Sans", system-ui, sans-serif;
+    --font-sans: "Nanum Gothic", system-ui, sans-serif;
+
+    --hero-photo: url("https://picsum.photos/seed/arc-popie-concert/2400/1400");
+    --hero-photo-position: center 46%;
+
+    --btn-primary-text: oklch(98% 0.004 0);
+
+    /* Dark base — but vivid */
+    --bg: oklch(9% 0.012 330);
+    --bg-raised: oklch(14% 0.016 330);
+    --bg-overlay: oklch(20% 0.018 330);
+    --border: oklch(28% 0.022 330);
+
+    --text: oklch(96% 0.006 330);
+    --text-muted: oklch(62% 0.018 330);
+    --text-faint: oklch(40% 0.012 330);
+
+    /* Rounder — youthful */
+    --r-sm: 0.5rem;
+    --r: 0.75rem;
+    --r-md: 1rem;
+    --r-lg: 1.5rem;
+    --r-xl: 2rem;
+    --r-2xl: 2.5rem;
+
+    /* Soft glow — magenta */
+    --glow-sm: 0 0 8px color-mix(in oklch, var(--primary) 55%, transparent);
+    --glow:
+      0 0 18px color-mix(in oklch, var(--primary) 45%, transparent),
+      0 0 36px color-mix(in oklch, var(--primary) 18%, transparent);
+    --glow-lg:
+      0 0 28px color-mix(in oklch, var(--primary) 60%, transparent),
+      0 0 56px color-mix(in oklch, var(--primary) 28%, transparent);
+  }
+
+  [data-theme="light"] {
+    --bg: oklch(98% 0.006 330);
+    --bg-raised: oklch(95% 0.01 330);
+    --bg-overlay: oklch(90% 0.014 330);
+    --border: oklch(80% 0.018 340);
+    --text: oklch(16% 0.012 330);
+    --text-muted: oklch(46% 0.018 330);
+    --text-faint: oklch(66% 0.012 330);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: oklch(98% 0.006 330);
+      --bg-raised: oklch(95% 0.01 330);
+      --bg-overlay: oklch(90% 0.014 330);
+      --border: oklch(80% 0.018 340);
+      --text: oklch(16% 0.012 330);
+      --text-muted: oklch(46% 0.018 330);
+      --text-faint: oklch(66% 0.012 330);
+    }
+  }
+
+  /* ── Sliding gradient buttons ─────────────────────────── */
+  .btn-primary {
+    background: linear-gradient(
+        90deg,
+        var(--violet) 0%,
+        var(--magenta) 45%,
+        var(--coral) 100%
+      )
+      100% 0 / 220% 100% no-repeat;
+    color: var(--btn-primary-text);
+    transition:
+      background-position var(--t),
+      box-shadow var(--t),
+      transform var(--t-fast);
+
+    &:hover {
+      background-position: 0% 0;
+      box-shadow: var(--glow);
+    }
+  }
+
+  .btn-secondary {
+    background: linear-gradient(
+        90deg,
+        var(--magenta) 0%,
+        var(--coral) 50%,
+        var(--yellow) 100%
+      )
+      100% 0 / 220% 100% no-repeat;
+    color: oklch(12% 0.01 0);
+    transition:
+      background-position var(--t),
+      box-shadow var(--t),
+      transform var(--t-fast);
+
+    &:hover {
+      background-position: 0% 0;
+    }
+  }
+
+  /* ── Text gradient ────────────────────────────────────── */
+  .text-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--magenta) 0%,
+      var(--coral) 50%,
+      var(--yellow) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ── Card glow ────────────────────────────────────────── */
+  .card-glow {
+    border-color: color-mix(in oklch, var(--primary) 30%, var(--border));
+    box-shadow:
+      0 0 0 1px color-mix(in oklch, var(--primary) 15%, transparent),
+      0 0 28px color-mix(in oklch, var(--primary) 8%, transparent);
+
+    &:hover {
+      border-color: color-mix(in oklch, var(--primary) 60%, var(--border));
+      box-shadow:
+        0 0 0 1px color-mix(in oklch, var(--primary) 30%, transparent),
+        var(--glow);
+    }
+  }
+}

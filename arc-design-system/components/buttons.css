@@ -1,0 +1,202 @@
+/* ============================================================
+   ARC — Buttons
+   Solid by default. Themes add gradients, glows, or other
+   visual treatments via @layer arc.theme.
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s2);
+  padding: var(--s3) var(--s6);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-radius: var(--r-md);
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition:
+    background var(--t),
+    background-position var(--t),
+    box-shadow var(--t),
+    border-color var(--t),
+    color var(--t),
+    transform var(--t-fast);
+
+  &:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+/* ── Filled variants ─────────────────────────────────────── */
+.btn-primary {
+  background: var(--primary);
+  color: var(--btn-primary-text);
+  border-color: transparent;
+
+  &:hover {
+    background: color-mix(in oklch, var(--primary) 82%, white);
+    box-shadow: var(--glow);
+  }
+}
+
+.btn-secondary {
+  background: var(--secondary);
+  color: oklch(95% 0.004 258);
+  border-color: transparent;
+
+  &:hover {
+    background: color-mix(in oklch, var(--secondary) 82%, white);
+    box-shadow: var(--glow);
+  }
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: oklch(10% 0.01 258);
+  border-color: transparent;
+
+  &:hover {
+    background: color-mix(in oklch, var(--accent) 82%, white);
+    box-shadow: var(--glow);
+  }
+}
+
+.btn-success {
+  background: var(--success);
+  color: oklch(10% 0.01 258);
+  border-color: transparent;
+
+  &:hover {
+    background: color-mix(in oklch, var(--success) 82%, white);
+  }
+}
+
+.btn-warning {
+  background: var(--warning);
+  color: oklch(10% 0.01 258);
+  border-color: transparent;
+
+  &:hover {
+    background: color-mix(in oklch, var(--warning) 82%, white);
+  }
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: oklch(97% 0.004 258);
+  border-color: transparent;
+
+  &:hover {
+    background: color-mix(in oklch, var(--danger) 82%, white);
+  }
+}
+
+/* ── Outline variants ────────────────────────────────────── */
+.btn-outline {
+  background: transparent;
+  border-color: var(--primary);
+  color: var(--primary);
+
+  &:hover {
+    background: color-mix(in oklch, var(--primary) 10%, transparent);
+    box-shadow: var(--glow-sm);
+  }
+}
+
+.btn-outline-secondary {
+  background: transparent;
+  border-color: var(--secondary);
+  color: var(--secondary);
+
+  &:hover {
+    background: color-mix(in oklch, var(--secondary) 10%, transparent);
+  }
+}
+
+.btn-outline-accent {
+  background: transparent;
+  border-color: var(--accent);
+  color: var(--accent);
+
+  &:hover {
+    background: color-mix(in oklch, var(--accent) 10%, transparent);
+  }
+}
+
+.btn-outline-danger {
+  background: transparent;
+  border-color: var(--danger);
+  color: var(--danger);
+
+  &:hover {
+    background: color-mix(in oklch, var(--danger) 10%, transparent);
+  }
+}
+
+/* ── Ghost variant ───────────────────────────────────────── */
+.btn-ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text-muted);
+
+  &:hover {
+    background: var(--bg-overlay);
+    border-color: var(--text-faint);
+    color: var(--text);
+  }
+}
+
+/* ── Link variant ────────────────────────────────────────── */
+.btn-link {
+  background: transparent;
+  border-color: transparent;
+  color: var(--primary);
+  padding-inline: var(--s2);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* ── Sizes ───────────────────────────────────────────────── */
+.btn-xs {
+  padding: var(--s1) var(--s3);
+  font-size: var(--text-xs);
+  border-radius: var(--r);
+}
+.btn-sm {
+  padding: var(--s2) var(--s4);
+  font-size: var(--text-xs);
+  border-radius: var(--r);
+}
+.btn-lg {
+  padding: var(--s4) var(--s8);
+  font-size: var(--text-base);
+  border-radius: var(--r-lg);
+}
+.btn-xl {
+  padding: var(--s5) var(--s10);
+  font-size: var(--text-lg);
+  border-radius: var(--r-xl);
+}
+.btn-full {
+  width: 100%;
+}
+.btn-icon {
+  padding: var(--s3);
+  aspect-ratio: 1;
+}
