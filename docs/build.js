@@ -6,18 +6,18 @@
  * Run: node build.js
  *
  * Output:
- *   dist/arc.css           — design system only (no theme)
- *   dist/arc.cyber.css     — design system + cyber theme
- *   dist/arc.popie.css     — design system + popie theme
- *   dist/arc.girly.css     — design system + girly theme
- *   dist/arc.boy.css       — design system + boy theme
- *   dist/arc.high-contrast.css — design system + high-contrast theme
- *   dist/arc.colorblind.css — design system + colorblind-safe theme
- *   dist/arc.xyntrel.css   — design system + xyntrel theme
- *   dist/arc.bootstrap.css — design system + bootstrap theme
- *   dist/arc.tailwind.css  — design system + tailwind theme
- *   dist/arc.corporate.css — design system + corporate theme
- *   dist/arc.editorial.css — design system + editorial theme
+ *   dist/arc.css           		— design system only (no theme)
+ *   dist/arc.cyber.css     		— design system + cyber theme
+ *   dist/arc.popie.css     		— design system + popie theme
+ *   dist/arc.girly.css     		— design system + girly theme
+ *   dist/arc.boy.css       		— design system + boy theme
+ *   dist/arc.high-contrast.css 	— design system + high-contrast theme
+ *   dist/arc.colorblind.css 		— design system + colorblind-safe theme
+ *   dist/arc.xyntrel.css  			— design system + xyntrel theme
+ *   dist/arc.bootstrap.css 		— design system + bootstrap theme
+ *   dist/arc.tailwind.css  		— design system + tailwind theme
+ *   dist/arc.corporate.css 		— design system + corporate theme
+ *   dist/arc.editorial.css 		— design system + editorial theme
  */
 
 const fs = require("fs");
