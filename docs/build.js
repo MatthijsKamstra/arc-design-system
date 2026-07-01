@@ -28,23 +28,23 @@ const DIST = path.join(ROOT, "dist");
 
 // Layer declaration header — placed after top-level theme @import rules
 const LAYER_ORDER = `@layer
-  arc.reset,
-  arc.tokens,
-  arc.base,
-  arc.layout,
+	arc.reset,
+	arc.tokens,
+	arc.base,
+	arc.layout,
 	arc.components.hero,
-  arc.components.buttons,
-  arc.components.badges,
-  arc.components.cards,
-  arc.components.alerts,
-  arc.components.forms,
-  arc.components.nav,
-  arc.components.progress,
+	arc.components.buttons,
+	arc.components.badges,
+	arc.components.cards,
+	arc.components.alerts,
+	arc.components.forms,
+	arc.components.nav,
+	arc.components.progress,
 	arc.components.extras,
-  arc.components.code,
-  arc.utilities,
-  arc.animations,
-  arc.theme;
+	arc.components.code,
+	arc.utilities,
+	arc.animations,
+	arc.theme;
 
 `;
 

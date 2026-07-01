@@ -31,11 +31,11 @@
 
     --btn-primary-text: oklch(8% 0.004 0);
 
-    /* Very dark, almost black */
-    --bg: oklch(8% 0.006 258);
-    --bg-raised: oklch(13% 0.008 258);
-    --bg-overlay: oklch(18% 0.01 258);
-    --border: oklch(25% 0.012 258);
+    /* Dark blue base, not pure black */
+    --bg: oklch(16% 0.035 255);
+    --bg-raised: oklch(20% 0.036 255);
+    --bg-overlay: oklch(24% 0.038 255);
+    --border: oklch(33% 0.04 250);
 
     --text: oklch(94% 0.005 258);
     --text-muted: oklch(56% 0.01 258);
@@ -60,10 +60,10 @@
   }
 
   [data-theme="light"] {
-    --bg: oklch(14% 0.006 258);
-    --bg-raised: oklch(18% 0.008 258);
-    --bg-overlay: oklch(22% 0.01 258);
-    --border: oklch(30% 0.012 258);
+    --bg: oklch(18% 0.032 252);
+    --bg-raised: oklch(24% 0.034 252);
+    --bg-overlay: oklch(28% 0.036 252);
+    --border: oklch(36% 0.038 248);
     --text: oklch(92% 0.005 258);
     --text-muted: oklch(58% 0.01 258);
     --text-faint: oklch(40% 0.007 258);
@@ -71,10 +71,10 @@
 
   @media (prefers-color-scheme: light) {
     :root:not([data-theme="dark"]) {
-      --bg: oklch(14% 0.006 258);
-      --bg-raised: oklch(18% 0.008 258);
-      --bg-overlay: oklch(22% 0.01 258);
-      --border: oklch(30% 0.012 258);
+      --bg: oklch(18% 0.032 252);
+      --bg-raised: oklch(24% 0.034 252);
+      --bg-overlay: oklch(28% 0.036 252);
+      --border: oklch(36% 0.038 248);
       --text: oklch(92% 0.005 258);
       --text-muted: oklch(58% 0.01 258);
       --text-faint: oklch(40% 0.007 258);

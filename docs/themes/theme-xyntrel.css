@@ -63,12 +63,12 @@
   }
 
   [data-theme="dark"] {
-    --secondary: var(--xy-dark);
+    --secondary: var(--xy-dark-2);
     --accent: oklch(76% 0.16 54);
-    --bg: var(--xy-dark);
-    --bg-raised: oklch(100% 0 0 / 0.055);
-    --bg-overlay: oklch(100% 0 0 / 0.09);
-    --border: oklch(100% 0 0 / 0.15);
+    --bg: var(--xy-dark-3);
+    --bg-raised: color-mix(in oklch, var(--xy-dark-2) 66%, var(--xy-dark-3));
+    --bg-overlay: color-mix(in oklch, var(--xy-dark) 42%, var(--xy-dark-3));
+    --border: color-mix(in oklch, var(--xy-cyan) 14%, oklch(100% 0 0 / 0.2));
     --text: oklch(98% 0.004 95);
     --text-muted: oklch(98% 0.004 95 / 0.72);
     --text-faint: oklch(98% 0.004 95 / 0.52);
@@ -80,12 +80,12 @@
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --secondary: var(--xy-dark);
+      --secondary: var(--xy-dark-2);
       --accent: oklch(76% 0.16 54);
-      --bg: var(--xy-dark);
-      --bg-raised: oklch(100% 0 0 / 0.055);
-      --bg-overlay: oklch(100% 0 0 / 0.09);
-      --border: oklch(100% 0 0 / 0.15);
+      --bg: var(--xy-dark-3);
+      --bg-raised: color-mix(in oklch, var(--xy-dark-2) 66%, var(--xy-dark-3));
+      --bg-overlay: color-mix(in oklch, var(--xy-dark) 42%, var(--xy-dark-3));
+      --border: color-mix(in oklch, var(--xy-cyan) 14%, oklch(100% 0 0 / 0.2));
       --text: oklch(98% 0.004 95);
       --text-muted: oklch(98% 0.004 95 / 0.72);
       --text-faint: oklch(98% 0.004 95 / 0.52);

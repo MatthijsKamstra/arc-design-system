@@ -1,5 +1,5 @@
 /* ============================================================
-   ARC Design System — Built 2026-06-30
+   ARC Design System — Built 2026-07-01
    Theme: themes/theme-colorblind.css
    ============================================================ */
 
@@ -7,23 +7,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700;800&family=JetBrains+Mono:wght@500&display=swap");
 
 @layer
-  arc.reset,
-  arc.tokens,
-  arc.base,
-  arc.layout,
+	arc.reset,
+	arc.tokens,
+	arc.base,
+	arc.layout,
 	arc.components.hero,
-  arc.components.buttons,
-  arc.components.badges,
-  arc.components.cards,
-  arc.components.alerts,
-  arc.components.forms,
-  arc.components.nav,
-  arc.components.progress,
+	arc.components.buttons,
+	arc.components.badges,
+	arc.components.cards,
+	arc.components.alerts,
+	arc.components.forms,
+	arc.components.nav,
+	arc.components.progress,
 	arc.components.extras,
-  arc.components.code,
-  arc.utilities,
-  arc.animations,
-  arc.theme;
+	arc.components.code,
+	arc.utilities,
+	arc.animations,
+	arc.theme;
 
 
 
@@ -1580,6 +1580,10 @@ hr {
   flex: 1;
 }
 
+.nav-items > li {
+  position: relative;
+}
+
 .nav-link {
   display: flex;
   align-items: center;
@@ -1603,6 +1607,113 @@ hr {
     color: var(--primary);
     background: color-mix(in oklch, var(--primary) 8%, var(--bg-overlay));
   }
+}
+
+.dropdown {
+  position: relative;
+
+  &:hover .dropdown-menu,
+  &:focus-within .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+.dropdown-toggle {
+  position: relative;
+  padding-right: calc(var(--s4) + 1.25rem);
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: var(--s3);
+    width: 0.75rem;
+    height: 0.5rem;
+    transform: translateY(-50%);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%239aa0aa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 0.75rem;
+  }
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 0;
+  min-width: 17rem;
+  max-width: min(24rem, calc(100vw - 2rem));
+  padding: var(--s2);
+  margin: 0;
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  background: color-mix(in oklch, var(--bg-raised) 94%, transparent);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.5rem);
+  pointer-events: none;
+  transition:
+    opacity var(--t-fast),
+    visibility var(--t-fast),
+    transform var(--t-fast);
+  z-index: calc(var(--z-dropdown) + 1);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(var(--s2) * -1);
+    height: var(--s2);
+  }
+}
+
+.dropdown-label {
+  display: block;
+  padding: var(--s3) var(--s3) var(--s2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.dropdown-item {
+  display: block;
+  padding: var(--s3);
+  border-radius: var(--r);
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  transition:
+    color var(--t-fast),
+    background var(--t-fast);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--text);
+    background: color-mix(in oklch, var(--primary) 10%, var(--bg-overlay));
+    outline: none;
+  }
+
+  &.active,
+  &[aria-current="page"] {
+    color: var(--primary);
+    background: color-mix(in oklch, var(--primary) 12%, transparent);
+  }
+}
+
+.dropdown-divider {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: var(--s2) 0;
 }
 
 .nav-spacer {
@@ -1651,6 +1762,14 @@ hr {
 
   &.active {
     color: var(--text);
+  }
+}
+
+@media (max-width: 840px) {
+  .dropdown-menu {
+    left: 0;
+    right: auto;
+    min-width: min(20rem, calc(100vw - 2rem));
   }
 }
 

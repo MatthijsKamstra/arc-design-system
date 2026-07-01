@@ -405,6 +405,90 @@
       line-height: 1.7;
     }
 
+    .layout-demo {
+      display: grid;
+      gap: var(--s4);
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    }
+
+    .layout-shell,
+    .layout-side {
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      background: color-mix(in oklch, var(--bg-overlay) 88%, transparent);
+      padding: var(--s4);
+    }
+
+    .layout-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: var(--s3);
+      margin-top: var(--s4);
+    }
+
+    .layout-box {
+      min-height: 3.25rem;
+      border-radius: var(--r);
+      border: 1px solid color-mix(in oklch, var(--primary) 24%, var(--border));
+      background: color-mix(in oklch, var(--primary) 10%, var(--bg-raised));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-align: center;
+      padding-inline: var(--s2);
+    }
+
+    .span-12 {
+      grid-column: span 12;
+    }
+
+    .span-8 {
+      grid-column: span 8;
+    }
+
+    .span-4 {
+      grid-column: span 4;
+    }
+
+    .span-6 {
+      grid-column: span 6;
+    }
+
+    .layout-side .type-note {
+      margin-top: var(--s1);
+    }
+
+    .surface-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--s4);
+      margin-top: var(--s6);
+      max-width: 760px;
+    }
+
+    .surface-chip {
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+      min-height: 108px;
+      padding: var(--s4);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--s2);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .surface-chip code {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
     @media (max-width: 840px) {
       .nav {
         flex-wrap: wrap;
@@ -412,6 +496,21 @@
 
       .nav-spacer {
         display: none;
+      }
+
+      .layout-demo {
+        grid-template-columns: 1fr;
+      }
+
+      .layout-mini-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+
+      .span-12,
+      .span-8,
+      .span-6,
+      .span-4 {
+        grid-column: span 6;
       }
     }
 
@@ -437,6 +536,7 @@
           <li><a class="dropdown-item" href="#demo-buttons">Buttons</a></li>
           <li><a class="dropdown-item" href="#demo-badges">Badges</a></li>
           <li><a class="dropdown-item" href="#demo-cards">Cards</a></li>
+          <li><a class="dropdown-item" href="#demo-grid-layout">Grid + Layout</a></li>
           <li><a class="dropdown-item" href="#demo-alerts">Alerts</a></li>
           <li><a class="dropdown-item" href="#demo-forms">Forms</a></li>
           <li><a class="dropdown-item" href="#demo-progress">Progress</a></li>
@@ -725,6 +825,38 @@
         </div>
       </div>
 
+      <div class="demo-panel" id="demo-grid-layout">
+        <div class="demo-header">
+          <span class="demo-label">Grid + Layout — core/grid.css</span>
+          <span class="badge badge-secondary">12-col example</span>
+        </div>
+        <div class="demo-body-col">
+          <div class="layout-demo">
+            <article class="layout-shell">
+              <p class="type-kicker">Page skeleton</p>
+              <div class="layout-mini-grid">
+                <div class="layout-box span-12">Header / Nav</div>
+                <div class="layout-box span-8">Main content (8)</div>
+                <div class="layout-box span-4">Sidebar (4)</div>
+                <div class="layout-box span-6">Card block A (6)</div>
+                <div class="layout-box span-6">Card block B (6)</div>
+                <div class="layout-box span-12">Footer</div>
+              </div>
+            </article>
+            <aside class="layout-side">
+              <p class="type-kicker">Utilities used</p>
+              <ul class="type-list">
+                <li><code>.container</code> for max width</li>
+                <li><code>.grid</code>, <code>.grid-2</code>, <code>.grid-auto-md</code> for structure</li>
+                <li><code>.col-span-2</code> and <code>.col-full</code> for explicit spans</li>
+                <li><code>.gap-*</code>, <code>.flex</code>, <code>.items-center</code> for spacing/alignment</li>
+              </ul>
+              <p class="type-note">Op mobiel klapt deze 12-kolom demo in naar 6 kolommen voor leesbaarheid.</p>
+            </aside>
+          </div>
+        </div>
+      </div>
+
       <!-- Alerts -->
       <div class="demo-panel" id="demo-alerts">
         <div class="demo-header">
@@ -968,6 +1100,30 @@
         <div class="swatch"
           style="background: var(--danger); box-shadow: 0 4px 20px color-mix(in oklch, var(--danger) 40%, transparent); color: white;">
           <span>Danger</span>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <h3 class="text-xl font-semibold mb-4">Background surfaces</h3>
+        <p class="text-sm text-muted">Deze tonen direct de actieve surface-tokens per theme en mode.</p>
+        <div class="surface-grid">
+          <article class="surface-chip" style="background: var(--bg); color: var(--text);">
+            <strong>Base background</strong>
+            <code>--bg</code>
+          </article>
+          <article class="surface-chip" style="background: var(--bg-raised); color: var(--text);">
+            <strong>Raised surface</strong>
+            <code>--bg-raised</code>
+          </article>
+          <article class="surface-chip" style="background: var(--bg-overlay); color: var(--text);">
+            <strong>Overlay surface</strong>
+            <code>--bg-overlay</code>
+          </article>
+          <article class="surface-chip"
+            style="background: color-mix(in oklch, var(--bg) 84%, var(--secondary)); color: var(--text); border-color: color-mix(in oklch, var(--secondary) 40%, var(--border));">
+            <strong>Theme canvas blend</strong>
+            <code>mix(--bg + --secondary)</code>
+          </article>
         </div>
       </div>
 
